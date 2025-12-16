@@ -1,0 +1,5924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BanglaNewsHub - Bangladeshi News Aggregator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📰</text></svg>">
+    <link rel="stylesheet" href="style.css">
+    <style>/* CSS Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+:root {
+    /* Light theme colors */
+    --bg-primary: #f9fafb;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #f3f4f6;
+    --bg-footer: #1f2937;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --text-tertiary: #9ca3af;
+    --text-footer: #f9fafb;
+    --border-color: #e5e7eb;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    
+    /* Brand colors */
+    --blue-500: #3b82f6;
+    --blue-600: #2563eb;
+    --blue-700: #1d4ed8;
+    --purple-500: #8b5cf6;
+    --purple-600: #7c3aed;
+    --green-500: #10b981;
+    --green-600: #059669;
+    --yellow-500: #f59e0b;
+    --yellow-600: #d97706;
+    --red-500: #ef4444;
+    --red-600: #dc2626;
+    --pink-500: #ec4899;
+    --pink-600: #db2777;
+    --indigo-500: #6366f1;
+    --indigo-600: #4f46e5;
+    
+    /* Gradients */
+    --gradient-blue: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-yellow: linear-gradient(to right, #fbbf24, #f59e0b);
+    --gradient-green: linear-gradient(to right, #10b981, #059669);
+    --gradient-red: linear-gradient(to right, #ef4444, #dc2626);
+    
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    
+    /* Border radius */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-2xl: 1.5rem;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark theme */
+.dark {
+    --bg-primary: #111827;
+    --bg-secondary: #1f2937;
+    --bg-tertiary: #374151;
+    --bg-footer: #030712;
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --text-tertiary: #9ca3af;
+    --text-footer: #f9fafb;
+    --border-color: #4b5563;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --gradient-blue: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+}
+
+body {
+    font-family: 'Inter', 'Noto Sans Bengali', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.bengali-font {
+    font-family: 'Noto Sans Bengali', sans-serif;
+}
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* Header */
+.header {
+    position: ;
+    top: 0;
+    z-index: 50;
+    background-color: var(--bg-secondary);
+    box-shadow: var(--shadow-lg);
+    padding: var(--spacing-md) 0;
+}
+
+.header-top {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.logo-icon {
+    background: var(--gradient-blue);
+    color: white;
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    font-size: 1.5rem;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.site-title {
+    font-size: 1.875rem;
+    font-weight: 800;
+    background: linear-gradient(to right, var(--blue-600), var(--purple-600));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.site-subtitle {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+}
+
+.location-icon {
+    margin-right: var(--spacing-xs);
+    color: var(--red-500);
+}
+
+.action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--spacing-sm);
+    width: 100%;
+}
+
+.theme-toggle-container {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-tertiary);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xs);
+}
+
+.theme-btn {
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-md);
+    border: none;
+    background: transparent;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+}
+
+.theme-btn:hover {
+    background-color: var(--bg-secondary);
+}
+
+.light-icon {
+    color: var(--yellow-500);
+    margin-right: var(--spacing-sm);
+}
+
+.dark-icon {
+    color: var(--indigo-500);
+    margin-right: var(--spacing-sm);
+}
+
+.btn {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-lg);
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-favorites {
+    background: linear-gradient(to right, var(--yellow-500), #f59e0b);
+    color: white;
+}
+
+.btn-favorites:hover {
+    background: linear-gradient(to right, #f59e0b, var(--yellow-600));
+}
+
+.btn-add-site {
+    background: linear-gradient(to right, var(--green-500), var(--green-600));
+    color: white;
+}
+
+.btn-add-site:hover {
+    background: linear-gradient(to right, var(--green-600), #047857);
+}
+
+.badge {
+    margin-left: var(--spacing-sm);
+    background-color: white;
+    color: var(--yellow-600);
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+}
+
+/* Search Section */
+.search-section {
+    margin-bottom: var(--spacing-md);
+}
+
+.search-container {
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    left: var(--spacing-lg);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-tertiary);
+}
+
+.search-input {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg) var(--spacing-md) 3rem;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--blue-500);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.clear-search-btn {
+    position: absolute;
+    right: var(--spacing-md);
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    display: none;
+}
+
+.clear-search-btn:hover {
+    color: var(--text-secondary);
+}
+
+/* Filter Section */
+.filter-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.categories-container {
+    flex: 1;
+    overflow-x: auto;
+    padding-bottom: var(--spacing-sm);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+}
+
+.categories-container::-webkit-scrollbar {
+    height: 6px;
+}
+
+.categories-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.dark .categories-container::-webkit-scrollbar-track {
+    background: #374151;
+}
+
+.categories-container::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.dark .categories-container::-webkit-scrollbar-thumb {
+    background: #6b7280;
+}
+
+.categories-container::-webkit-scrollbar-thumb:hover {
+    background: #a0a0a0;
+}
+
+.dark .categories-container::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+.categories-scroll {
+    display: flex;
+    gap: var(--spacing-sm);
+    min-width: max-content;
+    padding-bottom: var(--spacing-sm);
+}
+
+.category-btn {
+    padding: 0.625rem 1rem;
+    border-radius: var(--radius-lg);
+    font-weight: 500;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    background-color: var(--bg-tertiary);
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.category-btn:hover {
+    background-color: var(--border-color);
+}
+
+.category-btn.active {
+    background: linear-gradient(to right, var(--blue-500), var(--blue-600));
+    color: white;
+}
+
+.dark .category-btn.active {
+    background: linear-gradient(to right, var(--blue-700), #1e40af);
+}
+
+.category-btn i {
+    margin-right: 0.5rem;
+}
+
+.filter-dropdown-container {
+    position: relative;
+}
+
+.filter-btn {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background-color: var(--bg-tertiary);
+    border-radius: var(--radius-lg);
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+}
+
+.filter-btn:hover {
+    background-color: var(--border-color);
+}
+
+.dropdown-icon {
+    margin-left: var(--spacing-sm);
+    font-size: 0.75rem;
+}
+
+.filter-menu {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    margin-top: var(--spacing-sm);
+    width: 16rem;
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    border: 1px solid var(--border-color);
+    z-index: 10;
+    display: none;
+}
+
+.filter-menu-content {
+    padding: var(--spacing-md);
+}
+
+.filter-subtitle {
+    font-weight: 500;
+    margin-bottom: var(--spacing-sm);
+}
+
+.filter-options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.filter-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.filter-checkbox {
+    margin-right: var(--spacing-sm);
+}
+
+.sort-options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.sort-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.sort-radio {
+    margin-right: var(--spacing-sm);
+}
+
+.btn-apply-filter {
+    width: 100%;
+    margin-top: var(--spacing-md);
+    background-color: var(--blue-500);
+    color: white;
+    justify-content: center;
+}
+
+.btn-apply-filter:hover {
+    background-color: var(--blue-600);
+}
+
+/* Main Content */
+.main-content {
+    padding: var(--spacing-xl) 0;
+    flex: 1;
+}
+
+/* Stats Container */
+.stats-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-2xl);
+    width:95%;
+    margin:auto;
+}
+
+.stat-card {
+    border-radius: var(--radius-xl);
+    padding: 1.25rem;
+    color: white;
+    box-shadow: var(--shadow-lg);
+}
+
+.stat-card-1 {
+    background: linear-gradient(to right, var(--blue-500), var(--blue-600));
+}
+
+.stat-card-2 {
+    background: linear-gradient(to right, var(--yellow-500), var(--yellow-600));
+}
+
+.stat-card-3 {
+    background: linear-gradient(to right, var(--green-500), var(--green-600));
+}
+
+.stat-content {
+    display: flex;
+    align-items: center;
+}
+
+.stat-icon-container {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-lg);
+    margin-right: 1rem;
+}
+
+.stat-icon {
+    font-size: 1.5rem;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    opacity: 0.9;
+    margin-bottom: 0.25rem;
+}
+
+.stat-value {
+    font-size: 1.875rem;
+    font-weight: bold;
+}
+
+/* View Header */
+.view-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.view-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.title-icon {
+    margin-right: var(--spacing-md);
+    color: var(--blue-500);
+}
+
+.count-badge {
+    margin-left: var(--spacing-sm);
+    background-color: #dbeafe;
+    color: var(--blue-700);
+    font-size: 0.875rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+}
+
+.dark .count-badge {
+    background-color: #1e3a8a;
+    color: #93c5fd;
+}
+
+.view-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.view-btn {
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-lg);
+    border: none;
+    background-color: var(--bg-tertiary);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.view-btn:hover {
+    background-color: var(--border-color);
+}
+
+.view-btn.active {
+    background-color: #dbeafe;
+    color: var(--blue-600);
+}
+
+.dark .view-btn.active {
+    background-color: #1e3a8a;
+    color: #93c5fd;
+}
+
+/* News Grid/List */
+.news-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+}
+
+.news-card {
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px var(--shadow-color);
+}
+
+.loading-container {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 0;
+}
+
+.loading-spinner {
+    display: inline-block;
+    animation: spin 1s linear infinite;
+    border-radius: 9999px;
+    height: 4rem;
+    width: 4rem;
+    border-top: 4px solid var(--blue-500);
+    border-bottom: 4px solid var(--blue-500);
+    margin-bottom: 1.5rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+}
+
+.news-list {
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 4rem 0;
+    display: none;
+}
+
+.empty-icon-container {
+    display: inline-block;
+    padding: 1.5rem;
+    background-color: var(--bg-tertiary);
+    border-radius: 9999px;
+    margin-bottom: 1.5rem;
+}
+
+.empty-icon {
+    font-size: 2.25rem;
+    color: var(--text-tertiary);
+}
+
+.empty-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+}
+
+.empty-description {
+    color: var(--text-secondary);
+    max-width: 28rem;
+    margin: 0 auto 1.5rem;
+}
+
+.btn-reset-filters {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--blue-500);
+    color: white;
+    margin: 0 auto;
+}
+
+.btn-reset-filters:hover {
+    background-color: var(--blue-600);
+}
+
+/* Sections */
+.section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.section-icon {
+    margin-right: var(--spacing-md);
+}
+
+.recent-section .section-icon {
+    color: var(--purple-500);
+}
+
+.favorites-section .section-icon {
+    color: var(--yellow-500);
+}
+
+.clear-btn {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.clear-btn:hover {
+    color: var(--text-primary);
+}
+
+.clear-btn i {
+    margin-right: 0.25rem;
+}
+
+.favorites-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.btn-edit-favorites {
+    font-size: 0.875rem;
+    padding: 0.25rem 0.75rem;
+    background-color: var(--bg-tertiary);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+}
+
+.btn-edit-favorites:hover {
+    background-color: var(--border-color);
+}
+
+.btn-edit-favorites i {
+    margin-right: 0.25rem;
+}
+
+.btn-reorder-favorites {
+    font-size: 0.875rem;
+    padding: 0.25rem 0.75rem;
+    background-color: #dbeafe;
+    color: var(--blue-700);
+    display: flex;
+    align-items: center;
+}
+
+.dark .btn-reorder-favorites {
+    background-color: #1e3a8a;
+    color: #93c5fd;
+}
+
+.btn-reorder-favorites:hover {
+    background-color: #bfdbfe;
+}
+
+.dark .btn-reorder-favorites:hover {
+    background-color: #1e40af;
+}
+
+.btn-reorder-favorites i {
+    margin-right: 0.25rem;
+}
+
+/* Grids */
+.recent-grid,
+.favorites-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.empty-recent,
+.empty-favorites {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 2rem 0;
+    color: var(--text-secondary);
+}
+
+.empty-favorites-icon {
+    display: inline-block;
+    padding: 1rem;
+    background-color: rgba(251, 191, 36, 0.1);
+    border-radius: 9999px;
+    margin-bottom: 1rem;
+}
+
+.empty-favorites-icon i {
+    font-size: 1.5rem;
+    color: var(--yellow-500);
+}
+
+.dark .empty-favorites-icon {
+    background-color: rgba(251, 191, 36, 0.2);
+}
+
+/* Footer */
+.footer {
+    background-color: var(--bg-footer);
+    color: var(--text-footer);
+    padding: var(--spacing-2xl) 0 var(--spacing-xl);
+    margin-top: auto;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2xl);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.footer-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.footer-logo-icon {
+    background: var(--gradient-blue);
+    color: white;
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-lg);
+    font-size: 1.5rem;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(to right, #60a5fa, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.25rem;
+}
+
+.footer-tagline {
+    font-size: 0.875rem;
+    color: #d1d5db;
+}
+
+.footer-description {
+    font-size: 0.875rem;
+    color: #9ca3af;
+    line-height: 1.5;
+    margin-bottom: var(--spacing-md);
+}
+
+.footer-social {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background-color: var(--blue-500);
+    transform: translateY(-2px);
+}
+
+.footer-heading {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+    color: white;
+}
+
+.footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.footer-links li {
+    display: flex;
+    align-items: center;
+}
+
+.footer-links a,
+.footer-link-btn {
+    color: #d1d5db;
+    text-decoration: none;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.footer-links a:hover,
+.footer-link-btn:hover {
+    color: white;
+}
+
+.footer-links i {
+    width: 16px;
+}
+
+.footer-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.footer-category {
+    padding: 0.25rem 0.75rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    color: #d1d5db;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.footer-category:hover {
+    background-color: var(--blue-500);
+    color: white;
+}
+
+.app-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: #d1d5db;
+}
+
+.info-item i {
+    width: 16px;
+    color: var(--blue-400);
+}
+
+.footer-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.footer-action-btn {
+    padding: 0.5rem 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: var(--radius-md);
+    color: white;
+    font-size: 0.875rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.footer-action-btn:hover {
+    background-color: var(--blue-500);
+}
+
+.footer-bottom {
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    text-align: center;
+}
+
+.footer-copyright p {
+    font-size: 0.875rem;
+    color: #9ca3af;
+    margin-bottom: 0.25rem;
+}
+
+.footer-built {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+.footer-built i {
+    color: #ef4444;
+}
+
+.footer-links-bottom {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.footer-bottom-link {
+    color: #9ca3af;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.3s ease;
+}
+
+.footer-bottom-link:hover {
+    color: white;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    padding: var(--spacing-md);
+    display: none;
+}
+
+.modal-content {
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-2xl);
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 28rem;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.edit-modal-content {
+    max-width: 42rem;
+}
+
+.about-modal-content {
+    max-width: 36rem;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.close-modal-btn {
+    color: var(--text-secondary);
+    background: none;
+    border: none;
+    padding: var(--spacing-sm);
+    cursor: pointer;
+    font-size: 1.25rem;
+}
+
+.close-modal-btn:hover {
+    color: var(--text-primary);
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--blue-500);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.half {
+    width: 100%;
+}
+
+.form-checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+.form-checkbox {
+    margin-right: var(--spacing-md);
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: var(--radius-sm);
+}
+
+.checkbox-label {
+    font-size: 0.875rem;
+}
+
+.modal-footer {
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--spacing-md);
+}
+
+.btn-cancel {
+    padding: 0.625rem 1.25rem;
+    border: 1px solid var(--border-color);
+    background-color: transparent;
+    color: var(--text-primary);
+}
+
+.btn-cancel:hover {
+    background-color: var(--bg-tertiary);
+}
+
+.btn-submit {
+    padding: 0.625rem 1.25rem;
+    background: linear-gradient(to right, var(--blue-500), var(--blue-600));
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-submit:hover {
+    background: linear-gradient(to right, var(--blue-600), var(--blue-700));
+}
+
+.modal-description {
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+}
+
+.edit-favorites-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.empty-edit-favorites {
+    text-align: center;
+    padding: 2rem 0;
+    color: var(--text-secondary);
+}
+
+.edit-modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.btn-select-all {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+.btn-select-all:hover {
+    background-color: var(--border-color);
+}
+
+.btn-remove-selected {
+    padding: 0.5rem 1rem;
+    background: linear-gradient(to right, var(--red-500), var(--red-600));
+    color: white;
+}
+
+.btn-remove-selected:hover {
+    background: linear-gradient(to right, var(--red-600), var(--red-700));
+}
+
+/* About Modal */
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+.about-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--spacing-md);
+}
+
+.about-logo-icon {
+    background: var(--gradient-blue);
+    color: white;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-xl);
+    font-size: 2.5rem;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-logo h4 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    background: linear-gradient(to right, var(--blue-600), var(--purple-600));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.about-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.about-description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    text-align: center;
+}
+
+.about-features h5 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+    color: var(--text-primary);
+}
+
+.about-features ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+}
+
+.about-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.about-features i {
+    color: var(--green-500);
+    margin-top: 0.125rem;
+}
+
+.about-tech h5 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+    color: var(--text-primary);
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tech-item {
+    padding: 0.375rem 0.75rem;
+    background-color: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+    font-size: 0.75rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.about-stats .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--spacing-md);
+    background-color: var(--bg-tertiary);
+    border-radius: var(--radius-lg);
+}
+
+.about-stats .stat i {
+    font-size: 1.5rem;
+    color: var(--blue-500);
+    margin-bottom: var(--spacing-sm);
+}
+
+.about-stats .stat h6 {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+}
+
+.about-stats .stat p {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.about-footer {
+    text-align: center;
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--border-color);
+}
+
+.about-version {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+}
+
+.about-copyright {
+    color: var(--text-tertiary);
+    font-size: 0.75rem;
+}
+
+/* Toast */
+.toast {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: #1f2937;
+    color: white;
+    padding: 1rem;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-2xl);
+    transform: translateY(4rem);
+    transition: transform 0.3s;
+    z-index: 50;
+    max-width: 24rem;
+    display: none;
+}
+
+.toast-content {
+    display: flex;
+    align-items: flex-start;
+}
+
+.toast-icon {
+    margin-right: 0.75rem;
+    margin-top: 0.125rem;
+}
+
+.toast-icon i {
+    font-size: 1.25rem;
+    color: #34d399;
+}
+
+.toast-text {
+    flex: 1;
+}
+
+.toast-title {
+    font-weight: 500;
+}
+
+.toast-message {
+    font-size: 0.875rem;
+    color: #d1d5db;
+    margin-top: 0.25rem;
+}
+
+.close-toast-btn {
+    margin-left: 1rem;
+    color: #9ca3af;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.close-toast-btn:hover {
+    color: #d1d5db;
+}
+
+.toast-progress {
+    height: 0.25rem;
+    background-color: var(--blue-500);
+    border-radius: 9999px;
+    margin-top: 0.75rem;
+    width: 100%;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.slide-in {
+    animation: slideIn 0.3s ease forwards;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--text-tertiary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+/* Skeleton Loading */
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.dark .skeleton {
+    background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+    background-size: 200% 100%;
+}
+
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Card hover effects */
+.hover-lift:hover {
+    transform: translateY(-4px);
+}
+
+/* Custom checkbox */
+.custom-checkbox {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.custom-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: relative;
+    height: 20px;
+    width: 20px;
+    background-color: #e5e7eb;
+    border-radius: var(--radius-sm);
+}
+
+.dark .checkmark {
+    background-color: #4b5563;
+}
+
+.custom-checkbox:hover input ~ .checkmark {
+    background-color: #d1d5db;
+}
+
+.dark .custom-checkbox:hover input ~ .checkmark {
+    background-color: #6b7280;
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+    background-color: var(--blue-500);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.custom-checkbox input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.custom-checkbox .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* News Card Styles */
+.news-card-content {
+    padding: 1.25rem;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.card-logo-container {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+}
+
+.card-logo {
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.125rem;
+    margin-right: 0.75rem;
+    box-shadow: var(--shadow-md);
+    flex-shrink: 0;
+}
+
+.card-title-container {
+    flex: 1;
+    min-width: 0;
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: 1.125rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-subtitle {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.favorite-btn {
+    padding: 0.5rem;
+    border-radius: 9999px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #d1d5db;
+    flex-shrink: 0;
+}
+
+.favorite-btn.active {
+    color: var(--yellow-500);
+}
+
+.favorite-btn:hover {
+    background-color: var(--bg-tertiary);
+}
+
+.card-description {
+    margin-bottom: 1rem;
+}
+
+.card-description p {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.card-tag {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    border-radius: 9999px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.card-visit {
+    color: var(--blue-500);
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.card-visit:hover {
+    color: var(--blue-700);
+}
+
+.dark .card-visit:hover {
+    color: var(--blue-400);
+}
+
+/* List Item Styles */
+.list-item {
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 1rem;
+}
+
+.list-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px -5px var(--shadow-color);
+}
+
+.list-content {
+    display: flex;
+    align-items: center;
+}
+
+.list-logo {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 0.875rem;
+    margin-right: 1rem;
+    box-shadow: var(--shadow-md);
+    flex-shrink: 0;
+}
+
+.list-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.list-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.25rem;
+}
+
+.list-title {
+    font-weight: bold;
+    font-size: 1.125rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+}
+
+.list-subtitle {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.list-footer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.list-tag {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    border-radius: 9999px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.list-visit {
+    color: var(--blue-500);
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.list-visit:hover {
+    color: var(--blue-700);
+}
+
+.dark .list-visit:hover {
+    color: var(--blue-400);
+}
+
+/* Category Colors */
+.category-general {
+    background: linear-gradient(to right, var(--blue-500), var(--blue-600));
+}
+
+.category-politics {
+    background: linear-gradient(to right, var(--red-500), var(--red-600));
+}
+
+.category-sports {
+    background: linear-gradient(to right, var(--green-500), var(--green-600));
+}
+
+.category-business {
+    background: linear-gradient(to right, var(--purple-500), var(--purple-600));
+}
+
+.category-entertainment {
+    background: linear-gradient(to right, var(--pink-500), var(--pink-600));
+}
+
+.category-technology {
+    background: linear-gradient(to right, var(--indigo-500), var(--indigo-600));
+}
+
+.category-international {
+    background: linear-gradient(to right, var(--yellow-500), var(--yellow-600));
+}
+
+.category-health {
+    background: linear-gradient(to right, var(--green-500), var(--green-600));
+}
+
+.category-education {
+    background: linear-gradient(to right, var(--indigo-500), var(--indigo-600));
+}
+
+/* Language Colors */
+.language-bangla {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.dark .language-bangla {
+    background-color: #064e3b;
+    color: #a7f3d0;
+}
+
+.language-english {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.dark .language-english {
+    background-color: #1e3a8a;
+    color: #93c5fd;
+}
+
+.language-both {
+    background-color: #f3e8ff;
+    color: #6b21a8;
+}
+
+.dark .language-both {
+    background-color: #5b21b6;
+    color: #d8b4fe;
+}
+
+/* Responsive Design */
+@media (min-width: 640px) {
+    .header-top {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .action-buttons {
+        width: auto;
+    }
+    
+    .btn-text {
+        display: inline;
+    }
+    
+    .filter-section {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .stats-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .news-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .recent-grid,
+    .favorites-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+    }
+}
+
+@media (min-width: 768px) {
+    .btn-text {
+        display: inline;
+    }
+    
+    .about-features ul {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .news-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .recent-grid,
+    .favorites-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .footer-content {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .about-features ul {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1280px) {
+    .news-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .recent-grid,
+    .favorites-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .mobile-stack {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .mobile-padding {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .mobile-text-center {
+        text-align: center;
+    }
+    
+    .mobile-full-width {
+        width: 100%;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-buttons {
+        flex-direction: column;
+    }
+    
+    .view-controls {
+        gap: 0.25rem;
+    }
+    
+    .view-btn {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .about-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Recent and Favorite Items */
+.recent-item,
+.favorite-item {
+    background-color: var(--bg-secondary);
+    padding: 1rem;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+}
+
+.recent-item-content,
+.favorite-item-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.recent-item-logo,
+.favorite-item-logo {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 0.875rem;
+    margin-right: 0.75rem;
+    box-shadow: var(--shadow-md);
+    flex-shrink: 0;
+}
+
+.recent-item-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.recent-item-title {
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.recent-item-time {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.open-recent-btn {
+    padding: 0.5rem;
+    color: var(--blue-500);
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.open-recent-btn:hover {
+    color: var(--blue-700);
+}
+
+.dark .open-recent-btn:hover {
+    color: var(--blue-400);
+}
+
+.favorite-item-header {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 0.75rem;
+}
+
+.favorite-item-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.favorite-item-title {
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.favorite-item-description {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.remove-favorite-btn {
+    padding: 0.25rem;
+    color: var(--text-tertiary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.remove-favorite-btn:hover {
+    color: var(--red-500);
+}
+
+.favorite-item-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.favorite-item-tag {
+    padding: 0.125rem 0.5rem;
+    font-size: 0.75rem;
+    border-radius: 9999px;
+    font-weight: 500;
+}
+
+.visit-favorite-btn {
+    padding: 0.25rem;
+    color: var(--blue-500);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.visit-favorite-btn:hover {
+    color: var(--blue-700);
+}
+
+.dark .visit-favorite-btn:hover {
+    color: var(--blue-400);
+}
+
+/* Edit Favorite Items */
+.edit-favorite-item {
+    background-color: var(--bg-tertiary);
+    padding: 0.75rem;
+    border-radius: var(--radius-lg);
+}
+
+.edit-favorite-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.edit-favorite-info {
+    display: flex;
+    align-items: center;
+    margin-left: 0.75rem;
+}
+
+.edit-favorite-logo {
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 0.75rem;
+    margin-right: 0.75rem;
+}
+
+.edit-favorite-name {
+    font-weight: 500;
+}
+
+.edit-favorite-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.edit-favorite-category {
+    padding: 0.125rem 0.5rem;
+    font-size: 0.75rem;
+    border-radius: 9999px;
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+}
+
+.remove-single-favorite {
+    padding: 0.25rem;
+    color: var(--text-tertiary);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.remove-single-favorite:hover {
+    color: var(--red-500);
+}
+
+/* App Stats Update */
+#footerTotalSites,
+#footerFavoriteCount,
+#footerRecentCount,
+#aboutTotalSites,
+#aboutFavoriteCount,
+#aboutRecentCount {
+    font-weight: bold;
+    color: var(--blue-500);
+}
+/* Live News Section Styles */
+.live-news-section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.live-news-section .section-icon {
+    color: var(--red-500);
+}
+
+/* Feed Selector */
+.feed-selector-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.feed-btn {
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-lg);
+    border: none;
+    background-color: var(--bg-tertiary);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.feed-btn:hover {
+    background-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.feed-btn.active {
+    background: linear-gradient(to right, var(--red-500), var(--red-600));
+    color: white;
+}
+
+.feed-btn i {
+    font-size: 0.75rem;
+}
+
+/* Live News Grid */
+.live-news-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .live-news-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Live News Card */
+.live-news-card {
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-left: 4px solid var(--red-500);
+    
+}
+
+.live-news-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px -5px var(--shadow-color);
+}
+
+.live-news-card-content {
+    padding: 1.25rem;
+}
+
+.live-news-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.live-news-source {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.live-news-source-logo {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 0.875rem;
+}
+
+.prothom-alo-bg {
+    background: linear-gradient(to right, var(--green-500), var(--green-600));
+}
+
+.bbc-bangla-bg {
+    background: linear-gradient(to right, var(--blue-500), var(--blue-600));
+}
+
+.live-news-source-info h4 {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.live-news-source-info p {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.live-news-time {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    white-space: nowrap;
+}
+
+.live-news-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+}
+
+.live-news-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.live-news-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.live-news-category {
+    padding: 0.25rem 0.75rem;
+    background-color: var(--bg-tertiary);
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.live-news-read-more {
+    color: var(--red-500);
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.live-news-read-more:hover {
+    color: var(--red-700);
+}
+
+.dark .live-news-read-more:hover {
+    color: var(--red-400);
+}
+
+/* Empty State */
+.empty-live-news {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-secondary);
+    grid-column: 1 / -1;
+}
+
+.empty-live-news i {
+    font-size: 2rem;
+    color: var(--text-tertiary);
+    margin-bottom: 1rem;
+}
+
+/* Error State */
+.live-news-error {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: var(--red-500);
+    grid-column: 1 / -1;
+}
+
+.live-news-error i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Auto-refresh indicator */
+.auto-refresh-active {
+    background: linear-gradient(to right, var(--green-500), var(--green-600)) !important;
+    color: white !important;
+}
+
+.auto-refresh-active i {
+    color: white !important;
+}
+
+/* Time indicators */
+.time-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.time-very-recent {
+    background-color: var(--green-500);
+    animation: pulse 2s infinite;
+}
+
+.time-recent {
+    background-color: var(--yellow-500);
+}
+
+.time-old {
+    background-color: var(--text-tertiary);
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+/* In-App News Viewer Styles */
+.news-viewer-modal-content {
+    max-width: 1200px;
+    width: 105%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: hidden;
+}
+
+.news-viewer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.news-viewer-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 0 0 auto;
+}
+
+.news-viewer-nav-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    border: none;
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.news-viewer-nav-btn:hover:not(:disabled) {
+    background-color: var(--border-color);
+}
+
+.news-viewer-nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.news-viewer-title-container {
+    flex: 1;
+    min-width: 0;
+    margin: 0 1rem;
+    text-align: center;
+}
+
+.news-viewer-title-container .modal-title {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.news-viewer-url {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.news-viewer-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 0 0 auto;
+}
+
+.news-viewer-action-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    border: none;
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.news-viewer-action-btn:hover {
+    background-color: var(--border-color);
+}
+
+.news-viewer-content {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-primary);
+}
+
+.news-viewer-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-primary);
+    z-index: 10;
+}
+
+.news-viewer-error {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-primary);
+    z-index: 10;
+    text-align: center;
+    padding: 2rem;
+}
+
+.news-viewer-error i {
+    font-size: 3rem;
+    color: var(--red-500);
+    margin-bottom: 1rem;
+}
+
+.news-viewer-error h4 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.news-viewer-error p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    max-width: 400px;
+}
+
+.news-viewer-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: white;
+}
+
+.dark .news-viewer-frame {
+    background-color: #1a1a1a;
+}
+
+.news-viewer-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.news-viewer-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.news-viewer-security {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--green-500);
+}
+
+.news-viewer-security i {
+    font-size: 0.75rem;
+}
+
+.news-viewer-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.news-viewer-footer-btn {
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    border: none;
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.news-viewer-footer-btn:hover {
+    background-color: var(--border-color);
+}
+
+/* Mobile responsiveness for news viewer */
+@media (max-width: 768px) {
+    .news-viewer-modal-content {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+    }
+    
+    .news-viewer-header {
+        padding: 0.75rem 1rem;
+    }
+    
+    .news-viewer-title-container .modal-title {
+        font-size: 0.875rem;
+    }
+    
+    .news-viewer-url {
+        font-size: 0.7rem;
+    }
+    
+    .news-viewer-nav-btn,
+    .news-viewer-action-btn {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .news-viewer-footer {
+        padding: 0.5rem 1rem;
+    }
+    
+    .news-viewer-footer-btn {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.75rem;
+    }
+}
+</style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <!-- Top Bar -->
+            <div class="header-top">
+                <!-- Logo and Title -->
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <div>
+                        <h1 class="site-title">BanglaNewsHub</h1>
+                        <p class="site-subtitle">
+                            <i class="fas fa-map-marker-alt location-icon"></i>
+                            সকল বাংলাদেশি সংবাদ একস্থানে
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <div class="theme-toggle-container">
+                        <button id="themeToggle" class="theme-btn">
+                            <i class="fas fa-sun light-icon"></i>
+                            <span class="btn-text">Light</span>
+                        </button>
+                        <button id="themeToggleDark" class="theme-btn">
+                            <i class="fas fa-moon dark-icon"></i>
+                            <span class="btn-text">Dark</span>
+                        </button>
+                    </div>
+                    
+                    <button id="viewFavoritesBtn" class="btn btn-favorites">
+                        <i class="fas fa-star"></i>
+                        <span class="btn-text">Favorites</span>
+                        <span id="favoriteBadge" class="badge">0</span>
+                    </button>
+                    
+                    <button id="addCustomSiteBtn" class="btn btn-add-site">
+                        <i class="fas fa-plus"></i>
+                        <span class="btn-text">Add Site</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Search Bar -->
+            <div class="search-section">
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Search news websites..." 
+                           class="search-input">
+                    <button id="clearSearch" class="clear-search-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Categories & Filter Row -->
+            <div class="filter-section">
+                <!-- Categories -->
+                <div class="categories-container" id="categoryContainer">
+                    <div class="categories-scroll">
+                        <!-- Categories will be dynamically added -->
+                    </div>
+                </div>
+                
+                <!-- Filter Dropdown -->
+                <div class="filter-dropdown-container">
+                    <button id="filterBtn" class="filter-btn">
+                        <i class="fas fa-filter"></i>
+                        <span>Filter</span>
+                        <i class="fas fa-chevron-down dropdown-icon"></i>
+                    </button>
+                    
+                    <!-- Filter Dropdown Menu -->
+                    <div id="filterMenu" class="filter-menu">
+                        <div class="filter-menu-content">
+                            <h4 class="filter-subtitle">Language</h4>
+                            <div class="filter-options">
+                                <label class="filter-label">
+                                    <input type="checkbox" id="filterBangla" class="filter-checkbox" checked>
+                                    <span>Bangla</span>
+                                </label>
+                                <label class="filter-label">
+                                    <input type="checkbox" id="filterEnglish" class="filter-checkbox" checked>
+                                    <span>English</span>
+                                </label>
+                                <label class="filter-label">
+                                    <input type="checkbox" id="filterBoth" class="filter-checkbox" checked>
+                                    <span>Both</span>
+                                </label>
+                            </div>
+                            
+                            <h4 class="filter-subtitle">Sort By</h4>
+                            <div class="sort-options">
+                                <label class="sort-label">
+                                    <input type="radio" name="sort" value="name" class="sort-radio" checked>
+                                    <span>Name (A-Z)</span>
+                                </label>
+                                <label class="sort-label">
+                                    <input type="radio" name="sort" value="favorite" class="sort-radio">
+                                    <span>Favorites First</span>
+                                </label>
+                                <label class="sort-label">
+                                    <input type="radio" name="sort" value="recent" class="sort-radio">
+                                    <span>Recently Added</span>
+                                </label>
+                            </div>
+                            
+                            <button id="applyFilter" class="btn btn-apply-filter">
+                                Apply Filters
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Stats Cards -->
+        <div class="stats-container">
+            <div class="stat-card stat-card-1">
+                <div class="stat-content">
+                    <div class="stat-icon-container">
+                        <i class="fas fa-globe stat-icon"></i>
+                    </div>
+                    <div>
+                        <p class="stat-label">Total News Sites</p>
+                        <p id="totalSites" class="stat-value">0</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stat-card stat-card-2">
+                <div class="stat-content">
+                    <div class="stat-icon-container">
+                        <i class="fas fa-star stat-icon"></i>
+                    </div>
+                    <div>
+                        <p class="stat-label">Favorite Sites</p>
+                        <p id="favoriteCount" class="stat-value">0</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stat-card stat-card-3">
+                <div class="stat-content">
+                    <div class="stat-icon-container">
+                        <i class="fas fa-history stat-icon"></i>
+                    </div>
+                    <div>
+                        <p class="stat-label">Recently Visited</p>
+                        <p id="recentCount" class="stat-value">0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Live News Section -->
+<div class="section live-news-section" id="liveNewsSection">
+  <div class="section-header">
+    <h2 class="section-title">
+      <i class="fas fa-broadcast-tower section-icon"></i>Live News
+      <span class="count-badge" id="liveNewsCount">Loading...</span>
+    </h2>
+    <div class="favorites-controls">
+      <button id="refreshLiveNewsBtn" class="btn btn-edit-favorites">
+        <i class="fas fa-sync-alt"></i>Refresh
+      </button>
+      <button id="autoRefreshToggle" class="btn btn-reorder-favorites">
+        <i class="fas fa-play"></i>Auto-Refresh
+      </button>
+    </div>
+  </div>
+  
+  <!-- Feed Selector -->
+  <div class="feed-selector-container" id="feedSelector">
+    <!-- Buttons will be added dynamically -->
+  </div>
+  
+  <!-- Live News Container -->
+  <div id="liveNewsContainer">
+    <!-- News will load here -->
+    <div class="loading-container">
+      <div class="loading-spinner"></div>
+      <p class="loading-text">Loading live news...</p>
+    </div>
+  </div>
+</div>
+        
+        <!-- View Toggle -->
+        <div class="view-header">
+            <h2 class="view-title">
+                <i class="fas fa-newspaper title-icon"></i>
+                <span id="viewTitle">All News Websites</span>
+                <span class="count-badge" id="siteCount">0</span>
+            </h2>
+            
+            <div class="view-controls">
+                <button id="gridViewBtn" class="view-btn active">
+                    <i class="fas fa-th-large"></i>
+                </button>
+                <button id="listViewBtn" class="view-btn">
+                    <i class="fas fa-list"></i>
+                </button>
+                <button id="refreshBtn" class="view-btn">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- News Websites Grid/List -->
+        <div id="newsContainer">
+            <div id="newsGrid" class="news-grid">
+                <!-- News cards will be dynamically added here -->
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <p class="loading-text">Loading news websites...</p>
+                </div>
+            </div>
+            
+            <!-- List View (Hidden by default) -->
+            <div id="newsList" class="news-list">
+                <!-- List items will be dynamically added here -->
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="empty-state">
+            <div class="empty-icon-container">
+                <i class="fas fa-search empty-icon"></i>
+            </div>
+            <h3 class="empty-title">No news sites found</h3>
+            <p class="empty-description">Try adjusting your search or filter to find what you're looking for.</p>
+            <button id="resetFiltersBtn" class="btn btn-reset-filters">
+                Reset All Filters
+            </button>
+        </div>
+
+        <!-- Recently Visited Section -->
+        <div class="section recent-section" id="recentSection">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-history section-icon"></i>Recently Visited
+                </h2>
+                <button id="clearRecentBtn" class="clear-btn">
+                    <i class="fas fa-trash-alt"></i>Clear All
+                </button>
+            </div>
+            
+            <div id="recentGrid" class="recent-grid">
+                <!-- Recently visited sites will appear here -->
+                <div class="empty-recent">
+                    <p>No recently visited websites yet. Click on any news site to add it here.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Favorites Section -->
+        <div class="section favorites-section" id="favoritesSection">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-star section-icon"></i>Your Favorites
+                </h2>
+                <div class="favorites-controls">
+                    <button id="editFavoritesBtn" class="btn btn-edit-favorites">
+                        <i class="fas fa-edit"></i>Edit
+                    </button>
+                    <button id="reorderFavoritesBtn" class="btn btn-reorder-favorites">
+                        <i class="fas fa-sort"></i>Reorder
+                    </button>
+                </div>
+            </div>
+            
+            <div id="favoritesGrid" class="favorites-grid">
+                <!-- Favorite sites will appear here -->
+                <div class="empty-favorites">
+                    <div class="empty-favorites-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>No favorites yet. Click the star icon on any news site to add it here.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <div>
+                            <h3 class="footer-title">BanglaNewsHub</h3>
+                            <p class="footer-tagline">Your Gateway to Bangladeshi News</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        A comprehensive aggregator of Bangladeshi news websites, bringing together 
+                        all major news sources from Bangladesh in one convenient platform.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Share">
+                            <i class="fas fa-share-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#recentSection"><i class="fas fa-history"></i> Recently Visited</a></li>
+                        <li><a href="#favoritesSection"><i class="fas fa-star"></i> Favorites</a></li>
+                        <li><button id="footerAddSiteBtn" class="footer-link-btn"><i class="fas fa-plus"></i> Add Custom Site</button></li>
+                        <li><button id="footerThemeToggle" class="footer-link-btn"><i class="fas fa-moon"></i> Toggle Theme</button></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-heading">Categories</h4>
+                    <div class="footer-categories">
+                        <span class="footer-category">General</span>
+                        <span class="footer-category">Politics</span>
+                        <span class="footer-category">Sports</span>
+                        <span class="footer-category">Business</span>
+                        <span class="footer-category">Entertainment</span>
+                        <span class="footer-category">Technology</span>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 class="footer-heading">App Info</h4>
+                    <div class="app-info">
+                        <div class="info-item">
+                            <i class="fas fa-code"></i>
+                            <span>Version 2.1.0</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-database"></i>
+                            <span>News Sites: <span id="footerTotalSites">0</span></span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-star"></i>
+                            <span>Favorites: <span id="footerFavoriteCount">0</span></span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-history"></i>
+                            <span>Recently Visited: <span id="footerRecentCount">0</span></span>
+                        </div>
+                    </div>
+                    <div class="footer-actions">
+                        <button id="exportDataBtn" class="footer-action-btn">
+                            <i class="fas fa-download"></i> Export Data
+                        </button>
+                        <button id="importDataBtn" class="footer-action-btn">
+                            <i class="fas fa-upload"></i> Import Data
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>&copy; 2024 BanglaNewsHub. All rights reserved.</p>
+                    <p class="footer-built">
+                        <i class="fas fa-heart"></i> Built with PouchDB & Font Awesome
+                    </p>
+                </div>
+                <div class="footer-links-bottom">
+                    <a href="#" class="footer-bottom-link">Privacy Policy</a>
+                    <a href="#" class="footer-bottom-link">Terms of Service</a>
+                    <a href="#" class="footer-bottom-link">Contact</a>
+                    <a href="#" class="footer-bottom-link" id="aboutBtn">About</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Add Custom Site Modal -->
+    <div id="addSiteModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Add Custom News Website</h3>
+                <button id="closeModalBtn" class="close-modal-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="customSiteForm" class="modal-form">
+                <div class="form-group">
+                    <label class="form-label">Website Name *</label>
+                    <input type="text" id="siteName" required 
+                           class="form-input">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Website URL *</label>
+                    <input type="url" id="siteUrl" required 
+                           class="form-input"
+                           placeholder="https://example.com">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label class="form-label">Category</label>
+                        <select id="siteCategory" class="form-select">
+                            <option value="general">General News</option>
+                            <option value="politics">Politics</option>
+                            <option value="sports">Sports</option>
+                            <option value="business">Business</option>
+                            <option value="entertainment">Entertainment</option>
+                            <option value="technology">Technology</option>
+                            <option value="international">International</option>
+                            <option value="health">Health</option>
+                            <option value="education">Education</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group half">
+                        <label class="form-label">Language</label>
+                        <select id="siteLanguage" class="form-select">
+                            <option value="bangla">Bangla</option>
+                            <option value="english">English</option>
+                            <option value="both">Both</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Description (Optional)</label>
+                    <textarea id="siteDescription" rows="3" 
+                              class="form-textarea"
+                              placeholder="Brief description of the news website"></textarea>
+                </div>
+                
+                <div class="form-checkbox-group">
+                    <input type="checkbox" id="addToFavorites" class="form-checkbox">
+                    <label for="addToFavorites" class="checkbox-label">Add to favorites immediately</label>
+                </div>
+                
+                <div class="modal-footer">
+                    <div class="footer-buttons">
+                        <button type="button" id="cancelAddBtn" 
+                                class="btn btn-cancel">
+                            Cancel
+                        </button>
+                        <button type="submit" 
+                                class="btn btn-submit">
+                            Add Website
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Favorites Modal -->
+    <div id="editFavoritesModal" class="modal">
+        <div class="modal-content edit-modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Manage Favorites</h3>
+                <button id="closeEditModalBtn" class="close-modal-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-description">
+                <p>Select websites to remove from favorites or drag to reorder.</p>
+            </div>
+            
+            <div id="editFavoritesList" class="edit-favorites-list">
+                <!-- Favorites list for editing will appear here -->
+                <div class="empty-edit-favorites">
+                    <p>No favorites to manage.</p>
+                </div>
+            </div>
+            
+            <div class="edit-modal-footer">
+                <button id="selectAllFavorites" class="btn btn-select-all">
+                    Select All
+                </button>
+                <div class="footer-buttons">
+                    <button type="button" id="cancelEditBtn" 
+                            class="btn btn-cancel">
+                        Cancel
+                    </button>
+                    <button id="removeSelectedFavorites" 
+                            class="btn btn-remove-selected">
+                        Remove Selected
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Modal -->
+    <div id="aboutModal" class="modal">
+        <div class="modal-content about-modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">About BanglaNewsHub</h3>
+                <button id="closeAboutModalBtn" class="close-modal-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-logo">
+                    <div class="about-logo-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h4>BanglaNewsHub</h4>
+                </div>
+                
+                <div class="about-info">
+                    <p class="about-description">
+                        BanglaNewsHub is a comprehensive news aggregator that brings together 
+                        all major Bangladeshi news websites in one convenient platform. 
+                        Stay updated with the latest news from Bangladesh across various categories.
+                    </p>
+                    
+                    <div class="about-features">
+                        <h5>Features:</h5>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Aggregates 30+ Bangladeshi news websites</li>
+                            <li><i class="fas fa-check-circle"></i> Dark/Light mode support</li>
+                            <li><i class="fas fa-check-circle"></i> Favorites management</li>
+                            <li><i class="fas fa-check-circle"></i> Recently visited tracking</li>
+                            <li><i class="fas fa-check-circle"></i> Custom website addition</li>
+                            <li><i class="fas fa-check-circle"></i> Advanced filtering & sorting</li>
+                            <li><i class="fas fa-check-circle"></i> Responsive design</li>
+                            <li><i class="fas fa-check-circle"></i> Offline data storage</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="about-tech">
+                        <h5>Built With:</h5>
+                        <div class="tech-stack">
+                            <span class="tech-item">HTML5</span>
+                            <span class="tech-item">CSS3</span>
+                            <span class="tech-item">JavaScript</span>
+                            <span class="tech-item">PouchDB</span>
+                            <span class="tech-item">Font Awesome</span>
+                        </div>
+                    </div>
+                    
+                    <div class="about-stats">
+                        <div class="stat">
+                            <i class="fas fa-globe"></i>
+                            <div>
+                                <h6>News Sources</h6>
+                                <p id="aboutTotalSites">30+</p>
+                            </div>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-star"></i>
+                            <div>
+                                <h6>Favorites</h6>
+                                <p id="aboutFavoriteCount">0</p>
+                            </div>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-history"></i>
+                            <div>
+                                <h6>Recently Visited</h6>
+                                <p id="aboutRecentCount">0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-footer">
+                    <p class="about-version">Version 2.1.0</p>
+                    <p class="about-copyright">&copy; 2024 BanglaNewsHub. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <div class="toast-content">
+            <div id="toastIcon" class="toast-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="toast-text">
+                <p id="toastTitle" class="toast-title">Success</p>
+                <p id="toastMessage" class="toast-message">Operation completed successfully.</p>
+            </div>
+            <button id="closeToast" class="close-toast-btn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div id="toastProgress" class="toast-progress"></div>
+    </div>
+    <!-- In-App News Viewer Modal -->
+<div id="newsViewerModal" class="modal">
+    <div class="modal-content news-viewer-modal-content">
+        <div class="modal-header news-viewer-header">
+            <div class="news-viewer-nav">
+                <button id="newsViewerBack" class="news-viewer-nav-btn">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <button id="newsViewerForward" class="news-viewer-nav-btn" disabled>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <button id="newsViewerRefresh" class="news-viewer-nav-btn">
+                    <i class="fas fa-redo"></i>
+                </button>
+            </div>
+            
+            <div class="news-viewer-title-container">
+                <h3 id="newsViewerTitle" class="modal-title">Loading News...</h3>
+                <div class="news-viewer-url" id="newsViewerUrl"></div>
+            </div>
+            
+            <div class="news-viewer-actions">
+                <button id="newsViewerExternal" class="news-viewer-action-btn" title="Open in Browser">
+                    <i class="fas fa-external-link-alt"></i>
+                </button>
+                <button id="closeNewsViewerBtn" class="close-modal-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="news-viewer-content">
+            <!-- Loading State -->
+            <div id="newsViewerLoading" class="news-viewer-loading">
+                <div class="loading-spinner"></div>
+                <p>Loading article...</p>
+            </div>
+            
+            <!-- Error State -->
+            <div id="newsViewerError" class="news-viewer-error" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h4>Cannot Load Article</h4>
+                <p id="newsViewerErrorMessage">The article could not be loaded.</p>
+                <button id="newsViewerRetry" class="btn btn-reset-filters">Retry</button>
+                <button id="newsViewerOpenExternal" class="btn btn-submit">Open in Browser</button>
+            </div>
+            
+            <!-- Iframe Container -->
+            <iframe id="newsViewerFrame" class="news-viewer-frame" 
+                    sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    frameborder="0">
+            </iframe>
+        </div>
+        
+        <div class="news-viewer-footer">
+            <div class="news-viewer-info">
+                <span id="newsViewerSource"></span>
+                <span class="news-viewer-security" id="newsViewerSecurity">
+                    <i class="fas fa-lock"></i> Secure Connection
+                </span>
+            </div>
+            <div class="news-viewer-controls">
+                <button id="newsViewerAddFavorite" class="news-viewer-footer-btn">
+                    <i class="far fa-star"></i> Save
+                </button>
+                <button id="newsViewerShare" class="news-viewer-footer-btn">
+                    <i class="fas fa-share-alt"></i> Share
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="https://unpkg.com/pouchdb@8.0.1/dist/pouchdb.min.js"></script>
+    <script>// Initialize PouchDB
+const db = new PouchDB('banglanewshub_v2');
+
+// App state
+let allNewsSites = [];
+let favorites = [];
+let recentlyVisited = [];
+let currentCategory = 'all';
+let currentSearch = '';
+let currentView = 'grid'; // 'grid' or 'list'
+let isDarkMode = false;
+let filterState = {
+    bangla: true,
+    english: true,
+    both: true,
+    sortBy: 'name'
+};
+
+// Bangladeshi News Websites Data (Updated)
+const bangladeshiNewsSites = [
+    { id: 1, name: "Prothom Alo", url: "https://www.prothomalo.com", category: "general", language: "bangla", description: "Leading Bengali daily newspaper", logo: "PA" },
+    { id: 2, name: "The Daily Star", url: "https://www.thedailystar.net", category: "general", language: "english", description: "Leading English daily newspaper", logo: "DS" },
+    { id: 3, name: "Bangladesh Sangbad Sangstha", url: "https://www.bssnews.net", category: "general", language: "both", description: "National news agency of Bangladesh", logo: "BSS" },
+    { id: 4, name: "Dhaka Tribune", url: "https://www.dhakatribune.com", category: "general", language: "english", description: "Bangladeshi English-language daily", logo: "DT" },
+    { id: 5, name: "Kalerkontho", url: "https://www.kalerkantho.com", category: "general", language: "bangla", description: "Popular Bengali daily newspaper", logo: "KK" },
+    { id: 6, name: "Jamuna TV", url: "https://www.jamuna.tv", category: "general", language: "bangla", description: "Satellite television channel", logo: "JT" },
+    { id: 7, name: "Channel 24", url: "https://www.channel24bd.tv", category: "entertainment", language: "bangla", description: "News and entertainment channel", logo: "C24" },
+    { id: 8, name: "Bangla News 24", url: "https://www.banglanews24.com", category: "general", language: "bangla", description: "Online Bengali news portal", logo: "BN24" },
+    { id: 9, name: "Somoy TV", url: "https://www.somoynews.tv", category: "general", language: "bangla", description: "Television news channel", logo: "STV" },
+    { id: 10, name: "Daily Inqilab", url: "https://www.dailyinqilab.com", category: "politics", language: "bangla", description: "Bengali-language daily newspaper", logo: "DI" },
+    { id: 11, name: "Financial Express", url: "https://thefinancialexpress.com.bd", category: "business", language: "english", description: "Bangladeshi financial daily", logo: "FE" },
+    { id: 12, name: "Bonik Barta", url: "https://bonikbarta.net", category: "business", language: "bangla", description: "Business and economic daily", logo: "BB" },
+    { id: 13, name: "The Business Standard", url: "https://www.tbsnews.net", category: "business", language: "english", description: "English-language business daily", logo: "TBS" },
+    { id: 14, name: "BD News 24", url: "https://bdnews24.com", category: "general", language: "english", description: "Online English news portal", logo: "BD24" },
+    { id: 15, name: "BBC Bangla", url: "https://www.bbc.com/bengali", category: "international", language: "bangla", description: "BBC's Bengali language service", logo: "BBC" },
+    { id: 16, name: "Voice of America Bangla", url: "https://www.voabangla.com", category: "international", language: "bangla", description: "VOA's Bengali language service", logo: "VOA" },
+    { id: 17, name: "Daily Naya Diganta", url: "https://www.dailynayadiganta.com", category: "general", language: "bangla", description: "Bengali daily newspaper", logo: "ND" },
+    { id: 18, name: "The Asian Age", url: "https://dailyasianage.com", category: "general", language: "english", description: "English daily newspaper", logo: "AA" },
+    { id: 19, name: "Risingbd", url: "https://www.risingbd.com", category: "general", language: "bangla", description: "Online news portal", logo: "RB" },
+    { id: 20, name: "Tsports Bangla", url: "https://www.tsports.com/", category: "sports", language: "bangla", description: "Sports news portal", logo: "SD" },
+    { id: 21, name: "Cricbuzz Bengali", url: "https://cricbuzz.com", category: "sports", language: "bangla", description: "Cricket news in Bengali", logo: "CB" },
+    { id: 22, name: "Bangladesh Pratidin", url: "https://www.bd-pratidin.com", category: "general", language: "bangla", description: "Daily Bengali newspaper", logo: "BDP" },
+    { id: 23, name: "Manab Zamin", url: "https://mzamin.com", category: "general", language: "bangla", description: "Bengali daily newspaper", logo: "MZ" },
+    { id: 24, name: "TechShohor", url: "https://www.techshohor.com", category: "technology", language: "bangla", description: "Bangla tech news and reviews", logo: "TS" },
+    { id: 25, name: "Ajker Patrika", url: "https://www.ajkerpatrika.com", category: "general", language: "bangla", description: "Online news portal", logo: "AP" },
+    { id: 26, name: "Jago News 24", url: "https://www.jagonews24.com", category: "general", language: "bangla", description: "Online news portal", logo: "JN24" },
+    { id: 27, name: "Channel i", url: "https://www.channelionline.com", category: "entertainment", language: "bangla", description: "Television channel", logo: "Ci" },
+    { id: 28, name: "Desh Rupantor", url: "https://www.deshrupantor.com", category: "general", language: "bangla", description: "Daily Bengali newspaper", logo: "DR" },
+    { id: 29, name: "Amader Shomoy", url: "https://www.dainikamadershomoy.com", category: "general", language: "bangla", description: "Daily Bengali newspaper", logo: "AS" },
+    { id: 30, name: "Ittefaq", url: "https://www.ittefaq.com.bd", category: "general", language: "bangla", description: "Oldest Bengali daily newspaper", logo: "IT" }
+];
+
+// Category mapping
+const categories = [
+    { id: 'all', name: 'All', icon: 'fas fa-globe', color: 'category-general' },
+    { id: 'general', name: 'General', icon: 'fas fa-newspaper', color: 'category-general' },
+    { id: 'politics', name: 'Politics', icon: 'fas fa-landmark', color: 'category-politics' },
+    { id: 'sports', name: 'Sports', icon: 'fas fa-football-ball', color: 'category-sports' },
+    { id: 'business', name: 'Business', icon: 'fas fa-chart-line', color: 'category-business' },
+    { id: 'entertainment', name: 'Entertainment', icon: 'fas fa-film', color: 'category-entertainment' },
+    { id: 'technology', name: 'Technology', icon: 'fas fa-microchip', color: 'category-technology' },
+    { id: 'international', name: 'International', icon: 'fas fa-globe-americas', color: 'category-international' },
+    { id: 'health', name: 'Health', icon: 'fas fa-heartbeat', color: 'category-health' },
+    { id: 'education', name: 'Education', icon: 'fas fa-graduation-cap', color: 'category-education' }
+];
+
+// Language mapping
+const languageMap = {
+    'bangla': { name: 'Bangla', color: 'language-bangla', icon: 'fas fa-language' },
+    'english': { name: 'English', color: 'language-english', icon: 'fas fa-globe' },
+    'both': { name: 'Both', color: 'language-both', icon: 'fas fa-exchange-alt' }
+};
+
+// Initialize the app
+document.addEventListener('DOMContentLoaded', async () => {
+    await initializeApp();
+    setupEventListeners();
+    renderCategories();
+    renderNewsSites();
+    updateStats();
+    updateFooterStats();
+    loadRecentlyVisited();
+    loadFavorites();
+    
+    // Initialize theme
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+    
+    // Initialize view
+    if (currentView === 'grid') {
+        switchView('grid');
+    } else {
+        switchView('list');
+    }
+});
+
+// Initialize app data
+async function initializeApp() {
+    try {
+        // Check if we have data in PouchDB
+        const result = await db.allDocs({ include_docs: true });
+        
+        if (result.rows.length === 0) {
+            // First time setup - add default news sites
+            for (const site of bangladeshiNewsSites) {
+                await db.put({
+                    _id: `site_${site.id}`,
+                    type: 'news_site',
+                    ...site,
+                    isFavorite: false,
+                    addedDate: new Date().toISOString()
+                });
+            }
+            
+            // Initialize app data
+            await db.put({
+                _id: 'app_data',
+                type: 'app_data',
+                favorites: [],
+                recentlyVisited: [],
+                settings: {
+                    theme: 'light',
+                    view: 'grid',
+                    filters: filterState
+                }
+            });
+            
+            allNewsSites = bangladeshiNewsSites.map(site => ({
+                _id: `site_${site.id}`,
+                ...site,
+                isFavorite: false,
+                addedDate: new Date().toISOString()
+            }));
+        } else {
+            // Load existing data
+            const appData = await db.get('app_data').catch(() => null);
+            
+            if (appData) {
+                favorites = appData.favorites || [];
+                recentlyVisited = appData.recentlyVisited || [];
+                if (appData.settings) {
+                    filterState = appData.settings.filters || filterState;
+                    currentView = appData.settings.view || 'grid';
+                }
+            }
+            
+            // Load news sites
+            const siteDocs = result.rows
+                .filter(row => row.id.startsWith('site_'))
+                .map(row => row.doc);
+            
+            allNewsSites = siteDocs.map(doc => {
+                const isFav = favorites.includes(doc._id);
+                return { ...doc, isFavorite: isFav };
+            });
+            
+            // If no sites in DB, add default ones
+            if (allNewsSites.length === 0) {
+                for (const site of bangladeshiNewsSites) {
+                    const siteDoc = {
+                        _id: `site_${site.id}`,
+                        type: 'news_site',
+                        ...site,
+                        isFavorite: false,
+                        addedDate: new Date().toISOString()
+                    };
+                    await db.put(siteDoc);
+                    allNewsSites.push(siteDoc);
+                }
+            }
+        }
+    } catch (error) {
+        console.error('Error initializing app:', error);
+        // Fallback to default data
+        allNewsSites = bangladeshiNewsSites.map(site => ({
+            _id: `site_${site.id}`,
+            ...site,
+            isFavorite: false,
+            addedDate: new Date().toISOString()
+        }));
+    }
+}
+
+// Setup event listeners
+function setupEventListeners() {
+    // Theme toggles
+    document.getElementById('themeToggle').addEventListener('click', () => setTheme('light'));
+    document.getElementById('themeToggleDark').addEventListener('click', () => setTheme('dark'));
+    
+    // Footer theme toggle
+    document.getElementById('footerThemeToggle').addEventListener('click', () => {
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        setTheme(currentTheme === 'light' ? 'dark' : 'light');
+    });
+    
+    // Search input
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', (e) => {
+        currentSearch = e.target.value.toLowerCase();
+        renderNewsSites();
+        const clearBtn = document.getElementById('clearSearch');
+        clearBtn.style.display = currentSearch ? 'block' : 'none';
+    });
+    
+    document.getElementById('clearSearch').addEventListener('click', () => {
+        searchInput.value = '';
+        currentSearch = '';
+        renderNewsSites();
+        document.getElementById('clearSearch').style.display = 'none';
+    });
+    
+    // View favorites button
+    document.getElementById('viewFavoritesBtn').addEventListener('click', toggleFavoritesView);
+    
+    // Add custom site button
+    document.getElementById('addCustomSiteBtn').addEventListener('click', () => {
+        document.getElementById('addSiteModal').style.display = 'flex';
+    });
+    
+    // Footer add site button
+    document.getElementById('footerAddSiteBtn').addEventListener('click', () => {
+        document.getElementById('addSiteModal').style.display = 'flex';
+    });
+    
+    // Close modal buttons
+    document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+    document.getElementById('cancelAddBtn').addEventListener('click', closeModal);
+    document.getElementById('closeEditModalBtn').addEventListener('click', closeEditModal);
+    document.getElementById('cancelEditBtn').addEventListener('click', closeEditModal);
+    document.getElementById('closeAboutModalBtn').addEventListener('click', closeAboutModal);
+    
+    // Custom site form submission
+    document.getElementById('customSiteForm').addEventListener('submit', handleAddCustomSite);
+    
+    // Close modal on background click
+    document.getElementById('addSiteModal').addEventListener('click', (e) => {
+        if (e.target.id === 'addSiteModal') {
+            closeModal();
+        }
+    });
+    
+    document.getElementById('editFavoritesModal').addEventListener('click', (e) => {
+        if (e.target.id === 'editFavoritesModal') {
+            closeEditModal();
+        }
+    });
+    
+    document.getElementById('aboutModal').addEventListener('click', (e) => {
+        if (e.target.id === 'aboutModal') {
+            closeAboutModal();
+        }
+    });
+    
+    // View toggle buttons
+    document.getElementById('gridViewBtn').addEventListener('click', () => switchView('grid'));
+    document.getElementById('listViewBtn').addEventListener('click', () => switchView('list'));
+    
+    // Refresh button
+    document.getElementById('refreshBtn').addEventListener('click', refreshData);
+    
+    // Reset filters button
+    document.getElementById('resetFiltersBtn').addEventListener('click', resetFilters);
+    
+    // Clear recent button
+    document.getElementById('clearRecentBtn').addEventListener('click', clearRecentlyVisited);
+    
+    // Edit favorites button
+    document.getElementById('editFavoritesBtn').addEventListener('click', openEditFavoritesModal);
+    
+    // Reorder favorites button
+    document.getElementById('reorderFavoritesBtn').addEventListener('click', () => {
+        showToast('Drag and drop to reorder favorites', 'info');
+    });
+    
+    // Filter dropdown
+    document.getElementById('filterBtn').addEventListener('click', toggleFilterMenu);
+    
+    // Apply filter button
+    document.getElementById('applyFilter').addEventListener('click', applyFilters);
+    
+    // Close toast
+    document.getElementById('closeToast').addEventListener('click', hideToast);
+    
+    // Initialize filter checkboxes
+    document.getElementById('filterBangla').checked = filterState.bangla;
+    document.getElementById('filterEnglish').checked = filterState.english;
+    document.getElementById('filterBoth').checked = filterState.both;
+    
+    // Initialize sort radio buttons
+    document.querySelector(`input[name="sort"][value="${filterState.sortBy}"]`).checked = true;
+    
+    // Close filter menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('#filterBtn') && !e.target.closest('#filterMenu')) {
+            document.getElementById('filterMenu').style.display = 'none';
+        }
+    });
+    
+    // Footer category buttons
+    document.querySelectorAll('.footer-category').forEach(category => {
+        category.addEventListener('click', (e) => {
+            const categoryText = e.target.textContent.toLowerCase();
+            const categoryId = categories.find(cat => cat.name.toLowerCase() === categoryText)?.id || 'all';
+            
+            // Update current category
+            currentCategory = categoryId;
+            
+            // Update category buttons
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+                categories.forEach(cat => btn.classList.remove(cat.color));
+                btn.classList.add('category-btn');
+                
+                if (btn.dataset.category === categoryId) {
+                    btn.classList.remove('category-btn');
+                    btn.classList.add('active', categories.find(c => c.id === categoryId).color);
+                }
+            });
+            
+            renderNewsSites();
+        });
+    });
+    
+    // About button
+    document.getElementById('aboutBtn').addEventListener('click', openAboutModal);
+    
+    // Export/Import data buttons
+    document.getElementById('exportDataBtn').addEventListener('click', exportData);
+    document.getElementById('importDataBtn').addEventListener('click', () => {
+        document.getElementById('importFileInput')?.click();
+    });
+    
+    // Create hidden file input for import
+    const importInput = document.createElement('input');
+    importInput.type = 'file';
+    importInput.id = 'importFileInput';
+    importInput.accept = '.json';
+    importInput.style.display = 'none';
+    importInput.addEventListener('change', importData);
+    document.body.appendChild(importInput);
+    
+    // Social links
+    document.querySelectorAll('.social-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const title = e.target.closest('.social-link').getAttribute('title');
+            showToast(`Sharing on ${title} coming soon!`, 'info');
+        });
+    });
+    
+    // Footer links
+    document.querySelectorAll('.footer-bottom-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const text = e.target.textContent;
+            showToast(`${text} page coming soon!`, 'info');
+        });
+    });
+}
+
+// Set theme
+function setTheme(theme) {
+    const html = document.documentElement;
+    const lightBtn = document.getElementById('themeToggle');
+    const darkBtn = document.getElementById('themeToggleDark');
+    
+    if (theme === 'dark') {
+        html.classList.add('dark');
+        isDarkMode = true;
+        lightBtn.style.backgroundColor = '';
+        darkBtn.style.backgroundColor = 'var(--bg-secondary)';
+    } else {
+        html.classList.remove('dark');
+        isDarkMode = false;
+        lightBtn.style.backgroundColor = 'var(--bg-secondary)';
+        darkBtn.style.backgroundColor = '';
+    }
+    
+    localStorage.setItem('theme', theme);
+    saveSettings();
+}
+
+// Save settings to DB
+async function saveSettings() {
+    try {
+        const appData = await db.get('app_data').catch(() => ({
+            _id: 'app_data',
+            type: 'app_data',
+            favorites: [],
+            recentlyVisited: [],
+            settings: {}
+        }));
+        
+        appData.settings = {
+            theme: isDarkMode ? 'dark' : 'light',
+            view: currentView,
+            filters: filterState
+        };
+        
+        await db.put(appData);
+    } catch (error) {
+        console.error('Error saving settings:', error);
+    }
+}
+
+// Render categories
+function renderCategories() {
+    const container = document.querySelector('.categories-scroll');
+    container.innerHTML = '';
+    
+    categories.forEach(category => {
+        const button = document.createElement('button');
+        button.className = `category-btn ${category.id === currentCategory ? 'active ' + category.color : ''}`;
+        button.dataset.category = category.id;
+        button.innerHTML = `<i class="${category.icon}"></i>${category.name}`;
+        
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active');
+                categories.forEach(cat => btn.classList.remove(cat.color));
+                btn.classList.add('category-btn');
+            });
+            
+            // Add active class to clicked button
+            button.classList.remove('category-btn');
+            button.classList.add('active', category.color);
+            
+            currentCategory = category.id;
+            renderNewsSites();
+        });
+        
+        container.appendChild(button);
+    });
+}
+
+// Render news sites
+function renderNewsSites() {
+    // Filter sites
+    let filteredSites = filterSites();
+    
+    // Update UI elements
+    document.getElementById('siteCount').textContent = filteredSites.length;
+    document.getElementById('viewTitle').textContent = currentCategory === 'favorites' ? 'Favorite News Websites' : 
+        currentCategory === 'all' ? 'All News Websites' : 
+        categories.find(c => c.id === currentCategory)?.name + ' News Websites';
+    
+    // Show/hide empty state
+    const emptyState = document.getElementById('emptyState');
+    if (filteredSites.length === 0) {
+        emptyState.style.display = 'block';
+        document.getElementById('newsGrid').style.display = 'none';
+        document.getElementById('newsList').style.display = 'none';
+        return;
+    } else {
+        emptyState.style.display = 'none';
+    }
+    
+    // Render based on current view
+    if (currentView === 'grid') {
+        renderGridView(filteredSites);
+    } else {
+        renderListView(filteredSites);
+    }
+}
+
+// Filter sites based on current criteria
+function filterSites() {
+    let filtered = allNewsSites;
+    
+    // Category filter
+    if (currentCategory !== 'all') {
+        if (currentCategory === 'favorites') {
+            filtered = filtered.filter(site => site.isFavorite);
+        } else {
+            filtered = filtered.filter(site => site.category === currentCategory);
+        }
+    }
+    
+    // Search filter
+    if (currentSearch) {
+        filtered = filtered.filter(site => 
+            site.name.toLowerCase().includes(currentSearch) ||
+            (site.description && site.description.toLowerCase().includes(currentSearch)) ||
+            site.category.includes(currentSearch) ||
+            site.language.includes(currentSearch)
+        );
+    }
+    
+    // Language filter
+    filtered = filtered.filter(site => {
+        if (site.language === 'bangla' && !filterState.bangla) return false;
+        if (site.language === 'english' && !filterState.english) return false;
+        if (site.language === 'both' && !filterState.both) return false;
+        return true;
+    });
+    
+    // Sort
+    filtered.sort((a, b) => {
+        if (filterState.sortBy === 'name') {
+            return a.name.localeCompare(b.name);
+        } else if (filterState.sortBy === 'favorite') {
+            if (a.isFavorite && !b.isFavorite) return -1;
+            if (!a.isFavorite && b.isFavorite) return 1;
+            return a.name.localeCompare(b.name);
+        } else if (filterState.sortBy === 'recent') {
+            return new Date(b.addedDate || 0) - new Date(a.addedDate || 0);
+        }
+        return 0;
+    });
+    
+    return filtered;
+}
+
+// Render grid view
+function renderGridView(sites) {
+    const grid = document.getElementById('newsGrid');
+    const list = document.getElementById('newsList');
+    
+    list.style.display = 'none';
+    grid.style.display = 'grid';
+    
+    grid.innerHTML = sites.map(site => createNewsCard(site)).join('');
+    
+    // Add event listeners
+    addCardEventListeners();
+}
+
+// Render list view
+function renderListView(sites) {
+    const grid = document.getElementById('newsGrid');
+    const list = document.getElementById('newsList');
+    
+    grid.style.display = 'none';
+    list.style.display = 'flex';
+    
+    list.innerHTML = sites.map(site => createNewsListItem(site)).join('');
+    
+    // Add event listeners
+    addCardEventListeners();
+}
+
+// Create news card HTML for grid view
+function createNewsCard(site) {
+    const langInfo = languageMap[site.language] || languageMap.bangla;
+    const category = categories.find(c => c.id === site.category) || categories[0];
+    
+    return `
+        <div class="news-card fade-in hover-lift" data-site-id="${site._id}">
+            <div class="news-card-content">
+                <div class="card-header">
+                    <div class="card-logo-container">
+                        <div class="card-logo ${category.color}">
+                            ${site.logo}
+                        </div>
+                        <div class="card-title-container">
+                            <h3 class="card-title">${site.name}</h3>
+                            <p class="card-subtitle">${site.description || 'Bangladeshi news website'}</p>
+                        </div>
+                    </div>
+                    <button class="favorite-btn ${site.isFavorite ? 'active' : ''}" data-site-id="${site._id}">
+                        <i class="fas fa-star"></i>
+                    </button>
+                </div>
+                
+                <div class="card-description">
+                    <p>${site.description || 'Stay updated with the latest news from Bangladesh'}</p>
+                </div>
+                
+                <div class="card-footer">
+                    <div class="card-tags">
+                        <span class="card-tag ${category.color}">
+                            ${category.name}
+                        </span>
+                        <span class="card-tag ${langInfo.color}">
+                            <i class="${langInfo.icon}"></i>${langInfo.name}
+                        </span>
+                    </div>
+                    <span class="card-visit">
+                        Visit <i class="fas fa-external-link-alt"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// Create news list item HTML for list view
+function createNewsListItem(site) {
+    const langInfo = languageMap[site.language] || languageMap.bangla;
+    const category = categories.find(c => c.id === site.category) || categories[0];
+    
+    return `
+        <div class="list-item fade-in hover-lift" data-site-id="${site._id}">
+            <div class="list-content">
+                <div class="list-logo ${category.color}">
+                    ${site.logo}
+                </div>
+                
+                <div class="list-details">
+                    <div class="list-header">
+                        <h3 class="list-title">${site.name}</h3>
+                        <button class="favorite-btn ${site.isFavorite ? 'active' : ''}" data-site-id="${site._id}">
+                            <i class="fas fa-star"></i>
+                        </button>
+                    </div>
+                    
+                    <p class="list-subtitle">${site.description || 'Bangladeshi news website'}</p>
+                    
+                    <div class="list-footer">
+                        <span class="list-tag ${category.color}">
+                            ${category.name}
+                        </span>
+                        <span class="list-tag ${langInfo.color}">
+                            <i class="${langInfo.icon}"></i>${langInfo.name}
+                        </span>
+                        <a href="${site.url}" target="_blank" class="list-visit">
+                            <i class="fas fa-external-link-alt"></i>Visit
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// Add event listeners to cards
+function addCardEventListeners() {
+    // Favorite buttons
+    document.querySelectorAll('.favorite-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const siteId = btn.dataset.siteId;
+            toggleFavorite(siteId);
+        });
+    });
+    
+    // Card click to open site
+    document.querySelectorAll('.news-card, .list-item').forEach(card => {
+        card.addEventListener('click', (e) => {
+            if (!e.target.closest('.favorite-btn') && !e.target.closest('a')) {
+                const siteId = card.dataset.siteId;
+                openNewsSite(siteId);
+            }
+        });
+    });
+}
+
+// Toggle favorite status
+async function toggleFavorite(siteId) {
+    try {
+        const siteIndex = allNewsSites.findIndex(site => site._id === siteId);
+        
+        if (siteIndex !== -1) {
+            allNewsSites[siteIndex].isFavorite = !allNewsSites[siteIndex].isFavorite;
+            
+            // Update favorites array
+            if (allNewsSites[siteIndex].isFavorite) {
+                if (!favorites.includes(siteId)) {
+                    favorites.push(siteId);
+                }
+            } else {
+                const favIndex = favorites.indexOf(siteId);
+                if (favIndex !== -1) {
+                    favorites.splice(favIndex, 1);
+                }
+            }
+            
+            // Save to PouchDB
+            const appData = await db.get('app_data').catch(() => ({ 
+                _id: 'app_data', 
+                type: 'app_data', 
+                favorites: [], 
+                recentlyVisited: [] 
+            }));
+            
+            appData.favorites = favorites;
+            await db.put(appData);
+            
+            // Update UI
+            renderNewsSites();
+            loadFavorites();
+            updateStats();
+            updateFooterStats();
+            
+            showToast(
+                allNewsSites[siteIndex].isFavorite ? 'Added to favorites' : 'Removed from favorites',
+                allNewsSites[siteIndex].isFavorite ? 'success' : 'info'
+            );
+        }
+    } catch (error) {
+        console.error('Error toggling favorite:', error);
+        showToast('Error updating favorites', 'error');
+    }
+}
+
+// Open news site
+async function openNewsSite(siteId) {
+    try {
+        const site = allNewsSites.find(s => s._id === siteId);
+        
+        if (site) {
+            // Add to recently visited
+            const visitedItem = {
+                id: siteId,
+                name: site.name,
+                url: site.url,
+                logo: site.logo,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Remove if already exists
+            const existingIndex = recentlyVisited.findIndex(item => item.id === siteId);
+            if (existingIndex !== -1) {
+                recentlyVisited.splice(existingIndex, 1);
+            }
+            
+            // Add to beginning
+            recentlyVisited.unshift(visitedItem);
+            
+            // Keep only last 8
+            if (recentlyVisited.length > 8) {
+                recentlyVisited.pop();
+            }
+            
+            // Save to PouchDB
+            const appData = await db.get('app_data').catch(() => ({ 
+                _id: 'app_data', 
+                type: 'app_data', 
+                favorites: [], 
+                recentlyVisited: [] 
+            }));
+            
+            appData.recentlyVisited = recentlyVisited;
+            await db.put(appData);
+            
+            // Update UI
+            loadRecentlyVisited();
+            updateStats();
+            updateFooterStats();
+            
+            // Open in new tab
+            window.open(site.url, '_blank');
+        }
+    } catch (error) {
+        console.error('Error opening site:', error);
+        showToast('Error opening website', 'error');
+    }
+}
+
+// Load recently visited sites
+function loadRecentlyVisited() {
+    const grid = document.getElementById('recentGrid');
+    
+    if (recentlyVisited.length === 0) {
+        grid.innerHTML = '<div class="empty-recent"><p>No recently visited websites yet. Click on any news site to add it here.</p></div>';
+        return;
+    }
+    
+    grid.innerHTML = recentlyVisited.map(item => {
+        const site = allNewsSites.find(s => s._id === item.id);
+        const category = categories.find(c => c.id === site?.category) || categories[0];
+        
+        return `
+            <div class="recent-item">
+                <div class="recent-item-content">
+                    <div class="recent-item-logo ${category.color}">
+                        ${site?.logo || item.logo || '??'}
+                    </div>
+                    <div class="recent-item-details">
+                        <h4 class="recent-item-title">${item.name}</h4>
+                        <p class="recent-item-time">${formatTimeAgo(item.timestamp)}</p>
+                    </div>
+                    <button class="open-recent-btn" data-url="${item.url}">
+                        <i class="fas fa-external-link-alt"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+    }).join('');
+    
+    // Add event listeners to recent items
+    document.querySelectorAll('.open-recent-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            window.open(btn.dataset.url, '_blank');
+        });
+    });
+}
+
+// Load favorites
+function loadFavorites() {
+    const grid = document.getElementById('favoritesGrid');
+    const badge = document.getElementById('favoriteBadge');
+    
+    const favoriteSites = allNewsSites.filter(site => site.isFavorite);
+    badge.textContent = favoriteSites.length;
+    
+    if (favoriteSites.length === 0) {
+        grid.innerHTML = `
+            <div class="empty-favorites">
+                <div class="empty-favorites-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <p>No favorites yet. Click the star icon on any news site to add it here.</p>
+            </div>
+        `;
+        return;
+    }
+    
+    grid.innerHTML = favoriteSites.map(site => {
+        const category = categories.find(c => c.id === site.category) || categories[0];
+        const langInfo = languageMap[site.language] || languageMap.bangla;
+        
+        return `
+            <div class="favorite-item">
+                <div class="favorite-item-content">
+                    <div class="favorite-item-header">
+                        <div class="favorite-item-logo ${category.color}">
+                            ${site.logo}
+                        </div>
+                        <div class="favorite-item-details">
+                            <h4 class="favorite-item-title">${site.name}</h4>
+                            <p class="favorite-item-description">${site.description || ''}</p>
+                        </div>
+                        <button class="remove-favorite-btn" data-site-id="${site._id}">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="favorite-item-footer">
+                        <span class="favorite-item-tag ${langInfo.color}">
+                            ${langInfo.name}
+                        </span>
+                        <button class="visit-favorite-btn" data-url="${site.url}">
+                            <i class="fas fa-external-link-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+    
+    // Add event listeners to favorite items
+    document.querySelectorAll('.remove-favorite-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const siteId = btn.dataset.siteId;
+            toggleFavorite(siteId);
+        });
+    });
+    
+    document.querySelectorAll('.visit-favorite-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            window.open(btn.dataset.url, '_blank');
+        });
+    });
+}
+
+// Toggle favorites view
+function toggleFavoritesView() {
+    if (currentCategory === 'favorites') {
+        currentCategory = 'all';
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.classList.remove('active');
+            categories.forEach(cat => btn.classList.remove(cat.color));
+            if (btn.dataset.category === 'all') {
+                btn.classList.add('active', 'category-general');
+            } else {
+                btn.classList.add('category-btn');
+            }
+        });
+    } else {
+        currentCategory = 'favorites';
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.classList.remove('active');
+            categories.forEach(cat => btn.classList.remove(cat.color));
+            btn.classList.add('category-btn');
+        });
+    }
+    renderNewsSites();
+}
+
+// Switch between grid and list view
+function switchView(view) {
+    currentView = view;
+    
+    const gridBtn = document.getElementById('gridViewBtn');
+    const listBtn = document.getElementById('listViewBtn');
+    
+    if (view === 'grid') {
+        gridBtn.classList.add('active');
+        listBtn.classList.remove('active');
+    } else {
+        listBtn.classList.add('active');
+        gridBtn.classList.remove('active');
+    }
+    
+    renderNewsSites();
+    saveSettings();
+}
+
+// Handle adding custom site
+async function handleAddCustomSite(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('siteName').value.trim();
+    const url = document.getElementById('siteUrl').value.trim();
+    const category = document.getElementById('siteCategory').value;
+    const language = document.getElementById('siteLanguage').value;
+    const description = document.getElementById('siteDescription').value.trim();
+    const addToFavorites = document.getElementById('addToFavorites').checked;
+    
+    // Basic validation
+    if (!name || !url) {
+        showToast('Please fill in required fields', 'error');
+        return;
+    }
+    
+    // Validate URL
+    try {
+        new URL(url);
+    } catch {
+        showToast('Please enter a valid URL', 'error');
+        return;
+    }
+    
+    // Generate unique ID
+    const newId = `custom_${Date.now()}`;
+    const logo = name.substring(0, 2).toUpperCase();
+    
+    const newSite = {
+        _id: newId,
+        id: allNewsSites.length + 1,
+        name: name,
+        url: url,
+        category: category,
+        language: language,
+        description: description || "Custom news website",
+        isFavorite: addToFavorites,
+        logo: logo,
+        type: 'news_site',
+        isCustom: true,
+        addedDate: new Date().toISOString()
+    };
+    
+    try {
+        // Save to PouchDB
+        await db.put(newSite);
+        
+        // Add to local array
+        allNewsSites.push(newSite);
+        
+        // Add to favorites if selected
+        if (addToFavorites) {
+            favorites.push(newId);
+            
+            const appData = await db.get('app_data').catch(() => ({ 
+                _id: 'app_data', 
+                type: 'app_data', 
+                favorites: [], 
+                recentlyVisited: [] 
+            }));
+            
+            appData.favorites = favorites;
+            await db.put(appData);
+        }
+        
+        // Reset form and close modal
+        document.getElementById('customSiteForm').reset();
+        closeModal();
+        
+        // Show success message
+        showToast('Custom website added successfully!', 'success');
+        
+        // Update UI
+        renderNewsSites();
+        loadFavorites();
+        updateStats();
+        updateFooterStats();
+        
+    } catch (error) {
+        console.error('Error adding custom site:', error);
+        showToast('Error adding website', 'error');
+    }
+}
+
+// Open edit favorites modal
+function openEditFavoritesModal() {
+    const modal = document.getElementById('editFavoritesModal');
+    const list = document.getElementById('editFavoritesList');
+    
+    const favoriteSites = allNewsSites.filter(site => site.isFavorite);
+    
+    if (favoriteSites.length === 0) {
+        list.innerHTML = '<div class="empty-edit-favorites"><p>No favorites to manage.</p></div>';
+    } else {
+        list.innerHTML = favoriteSites.map(site => `
+            <div class="edit-favorite-item">
+                <div class="edit-favorite-content">
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="site-checkbox" value="${site._id}">
+                        <span class="checkmark"></span>
+                        <div class="edit-favorite-info">
+                            <div class="edit-favorite-logo ${categories.find(c => c.id === site.category)?.color || 'category-general'}">
+                                ${site.logo}
+                            </div>
+                            <span class="edit-favorite-name">${site.name}</span>
+                        </div>
+                    </label>
+                    <div class="edit-favorite-actions">
+                        <span class="edit-favorite-category">
+                            ${site.category}
+                        </span>
+                        <button class="remove-single-favorite" data-site-id="${site._id}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+        
+        // Add event listeners
+        document.querySelectorAll('.remove-single-favorite').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const siteId = btn.dataset.siteId;
+                toggleFavorite(siteId);
+                openEditFavoritesModal(); // Refresh the modal
+            });
+        });
+        
+        // Select all functionality
+        document.getElementById('selectAllFavorites').addEventListener('click', () => {
+            const checkboxes = document.querySelectorAll('.site-checkbox');
+            const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+            
+            checkboxes.forEach(cb => {
+                cb.checked = !allChecked;
+            });
+        });
+        
+        // Remove selected functionality
+        document.getElementById('removeSelectedFavorites').addEventListener('click', () => {
+            const checkboxes = document.querySelectorAll('.site-checkbox:checked');
+            if (checkboxes.length === 0) {
+                showToast('Please select websites to remove', 'warning');
+                return;
+            }
+            
+            checkboxes.forEach(cb => {
+                toggleFavorite(cb.value);
+            });
+            
+            showToast(`${checkboxes.length} website(s) removed from favorites`, 'success');
+            closeEditModal();
+        });
+    }
+    
+    modal.style.display = 'flex';
+}
+
+// Close edit favorites modal
+function closeEditModal() {
+    document.getElementById('editFavoritesModal').style.display = 'none';
+}
+
+// Open about modal
+function openAboutModal() {
+    const modal = document.getElementById('aboutModal');
+    
+    // Update about modal stats
+    document.getElementById('aboutTotalSites').textContent = allNewsSites.length;
+    document.getElementById('aboutFavoriteCount').textContent = favorites.length;
+    document.getElementById('aboutRecentCount').textContent = recentlyVisited.length;
+    
+    modal.style.display = 'flex';
+}
+
+// Close about modal
+function closeAboutModal() {
+    document.getElementById('aboutModal').style.display = 'none';
+}
+
+// Toggle filter menu
+function toggleFilterMenu() {
+    const menu = document.getElementById('filterMenu');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+}
+
+// Apply filters
+function applyFilters() {
+    filterState.bangla = document.getElementById('filterBangla').checked;
+    filterState.english = document.getElementById('filterEnglish').checked;
+    filterState.both = document.getElementById('filterBoth').checked;
+    filterState.sortBy = document.querySelector('input[name="sort"]:checked').value;
+    
+    document.getElementById('filterMenu').style.display = 'none';
+    renderNewsSites();
+    saveSettings();
+    showToast('Filters applied successfully', 'success');
+}
+
+// Reset all filters
+function resetFilters() {
+    currentCategory = 'all';
+    currentSearch = '';
+    document.getElementById('searchInput').value = '';
+    document.getElementById('clearSearch').style.display = 'none';
+    
+    filterState.bangla = true;
+    filterState.english = true;
+    filterState.both = true;
+    filterState.sortBy = 'name';
+    
+    // Update UI
+    document.getElementById('filterBangla').checked = true;
+    document.getElementById('filterEnglish').checked = true;
+    document.getElementById('filterBoth').checked = true;
+    document.querySelector('input[name="sort"][value="name"]').checked = true;
+    
+    renderCategories();
+    renderNewsSites();
+    saveSettings();
+    showToast('All filters reset', 'info');
+}
+
+// Refresh data
+function refreshData() {
+    renderNewsSites();
+    loadRecentlyVisited();
+    loadFavorites();
+    updateStats();
+    updateFooterStats();
+    showToast('Data refreshed', 'success');
+}
+
+// Clear recently visited
+async function clearRecentlyVisited() {
+    if (recentlyVisited.length === 0) return;
+    
+    recentlyVisited = [];
+    
+    try {
+        const appData = await db.get('app_data').catch(() => ({ 
+            _id: 'app_data', 
+            type: 'app_data', 
+            favorites: [], 
+            recentlyVisited: [] 
+        }));
+        
+        appData.recentlyVisited = [];
+        await db.put(appData);
+        
+        loadRecentlyVisited();
+        updateStats();
+        updateFooterStats();
+        showToast('Recently visited cleared', 'success');
+    } catch (error) {
+        console.error('Error clearing recently visited:', error);
+        showToast('Error clearing recently visited', 'error');
+    }
+}
+
+// Close modal
+function closeModal() {
+    document.getElementById('addSiteModal').style.display = 'none';
+    document.getElementById('customSiteForm').reset();
+}
+
+// Update stats
+function updateStats() {
+    document.getElementById('totalSites').textContent = allNewsSites.length;
+    document.getElementById('favoriteCount').textContent = favorites.length;
+    document.getElementById('recentCount').textContent = recentlyVisited.length;
+}
+
+// Update footer stats
+function updateFooterStats() {
+    document.getElementById('footerTotalSites').textContent = allNewsSites.length;
+    document.getElementById('footerFavoriteCount').textContent = favorites.length;
+    document.getElementById('footerRecentCount').textContent = recentlyVisited.length;
+}
+
+// Export data
+async function exportData() {
+    try {
+        const allDocs = await db.allDocs({ include_docs: true });
+        const data = {
+            version: '2.1.0',
+            exportDate: new Date().toISOString(),
+            data: allDocs.rows.map(row => row.doc)
+        };
+        
+        const dataStr = JSON.stringify(data, null, 2);
+        const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+        
+        const exportFileDefaultName = `banglanewshub-backup-${new Date().toISOString().split('T')[0]}.json`;
+        
+        const linkElement = document.createElement('a');
+        linkElement.setAttribute('href', dataUri);
+        linkElement.setAttribute('download', exportFileDefaultName);
+        linkElement.click();
+        
+        showToast('Data exported successfully!', 'success');
+    } catch (error) {
+        console.error('Error exporting data:', error);
+        showToast('Error exporting data', 'error');
+    }
+}
+
+// Import data
+async function importData(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    const reader = new FileReader();
+    
+    reader.onload = async function(event) {
+        try {
+            const data = JSON.parse(event.target.result);
+            
+            // Validate data format
+            if (!data.data || !Array.isArray(data.data)) {
+                showToast('Invalid data format', 'error');
+                return;
+            }
+            
+            // Clear existing data
+            const allDocs = await db.allDocs({ include_docs: true });
+            const deletePromises = allDocs.rows.map(row => db.remove(row.doc));
+            await Promise.all(deletePromises);
+            
+            // Import new data
+            const importPromises = data.data.map(doc => db.put(doc));
+            await Promise.all(importPromises);
+            
+            // Reload app
+            location.reload();
+            
+        } catch (error) {
+            console.error('Error importing data:', error);
+            showToast('Error importing data', 'error');
+        }
+    };
+    
+    reader.readAsText(file);
+    
+    // Reset file input
+    e.target.value = '';
+}
+
+// Show toast notification
+function showToast(message, type = 'success') {
+    const toast = document.getElementById('toast');
+    const toastTitle = document.getElementById('toastTitle');
+    const toastMessage = document.getElementById('toastMessage');
+    const toastIcon = document.getElementById('toastIcon');
+    const progress = document.getElementById('toastProgress');
+    
+    // Set content based on type
+    let title = 'Success';
+    let icon = 'fas fa-check-circle';
+    let iconColor = '#34d399';
+    
+    if (type === 'error') {
+        title = 'Error';
+        icon = 'fas fa-exclamation-circle';
+        iconColor = '#f87171';
+    } else if (type === 'warning') {
+        title = 'Warning';
+        icon = 'fas fa-exclamation-triangle';
+        iconColor = '#fbbf24';
+    } else if (type === 'info') {
+        title = 'Info';
+        icon = 'fas fa-info-circle';
+        iconColor = '#60a5fa';
+    }
+    
+    toastTitle.textContent = title;
+    toastMessage.textContent = message;
+    toastIcon.innerHTML = `<i class="${icon}" style="color: ${iconColor}; font-size: 1.25rem;"></i>`;
+    
+    // Show toast
+    toast.style.display = 'block';
+    setTimeout(() => {
+        toast.style.transform = 'translateY(0)';
+    }, 10);
+    
+    // Reset and animate progress bar
+    progress.style.width = '100%';
+    progress.style.transition = 'width 5s linear';
+    setTimeout(() => {
+        progress.style.width = '0%';
+    }, 10);
+    
+    // Auto-hide after 5 seconds
+    setTimeout(() => {
+        hideToast();
+    }, 5000);
+}
+
+// Hide toast
+function hideToast() {
+    const toast = document.getElementById('toast');
+    toast.style.transform = 'translateY(4rem)';
+    setTimeout(() => {
+        toast.style.display = 'none';
+    }, 300);
+}
+
+// Utility function to format time ago
+function formatTimeAgo(timestamp) {
+    const now = new Date();
+    const past = new Date(timestamp);
+    const diffMs = now - past;
+    const diffMins = Math.floor(diffMs / 60000);
+    const diffHours = Math.floor(diffMs / 3600000);
+    const diffDays = Math.floor(diffMs / 86400000);
+    
+    if (diffMins < 1) return 'Just now';
+    if (diffMins < 60) return `${diffMins} min${diffMins > 1 ? 's' : ''} ago`;
+    if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+    if (diffDays < 7) return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+    return past.toLocaleDateString();
+}
+// ===========================================
+// LIVE NEWS RSS FEED FUNCTIONALITY
+// ===========================================
+
+// ONLY use these two RSS feeds as requested
+const rssFeeds = [
+    {
+        id: 'prothom-alo',
+        name: 'Prothom Alo',
+        url: 'https://www.prothomalo.com/feed', // Your Atom format feed
+        language: 'bangla',
+        category: 'general',
+        logo: 'PA',
+        active: true,
+        type: 'atom' // Specify feed type
+    },
+    {
+        id: 'bbc-bangla',
+        name: 'BBC বাংলা',
+        url: 'https://feeds.bbci.co.uk/bengali/rss.xml', // Your RSS 2.0 format feed
+        language: 'bangla',
+        category: 'international',
+        logo: 'BBC',
+        active: true,
+        type: 'rss' // Specify feed type
+    }
+];
+
+// Application state for live news
+let liveNews = [];
+let currentFeed = 'prothom-alo';
+let isFetching = false;
+let autoRefreshInterval = null;
+let isAutoRefreshEnabled = false;
+
+// Initialize live news functionality
+function initializeLiveNews() {
+    // Check if live news section exists
+    if (!document.getElementById('liveNewsSection')) {
+        console.warn('Live news section not found in DOM');
+        return;
+    }
+    
+    // Load saved settings from localStorage
+    loadLiveNewsSettings();
+    
+    // Render feed selector
+    renderFeedSelector();
+    
+    // Load initial news
+    loadLiveNews();
+    
+    // Setup event listeners
+    setupLiveNewsEventListeners();
+}
+
+// Load settings from localStorage
+function loadLiveNewsSettings() {
+    const savedFeed = localStorage.getItem('banglanewshub_currentFeed');
+    if (savedFeed && rssFeeds.find(f => f.id === savedFeed)) {
+        currentFeed = savedFeed;
+    }
+    
+    const autoRefresh = localStorage.getItem('banglanewshub_autoRefresh');
+    if (autoRefresh === 'true') {
+        isAutoRefreshEnabled = true;
+        updateAutoRefreshButton();
+    }
+}
+
+// Setup event listeners for live news
+function setupLiveNewsEventListeners() {
+    // Refresh button
+    const refreshBtn = document.getElementById('refreshLiveNewsBtn');
+    if (refreshBtn) {
+        refreshBtn.addEventListener('click', () => {
+            if (!isFetching) {
+                loadLiveNews();
+                showToast('Refreshing live news...', 'info');
+            }
+        });
+    }
+    
+    // Auto-refresh toggle
+    const autoRefreshBtn = document.getElementById('autoRefreshToggle');
+    if (autoRefreshBtn) {
+        autoRefreshBtn.addEventListener('click', toggleAutoRefresh);
+    }
+}
+
+// Toggle auto-refresh feature
+function toggleAutoRefresh() {
+    isAutoRefreshEnabled = !isAutoRefreshEnabled;
+    
+    if (isAutoRefreshEnabled) {
+        // Start auto-refresh (every 5 minutes)
+        startAutoRefresh();
+        showToast('Auto-refresh enabled (every 5 minutes)', 'success');
+    } else {
+        // Stop auto-refresh
+        stopAutoRefresh();
+        showToast('Auto-refresh disabled', 'info');
+    }
+    
+    // Update button appearance
+    updateAutoRefreshButton();
+    
+    // Save setting
+    localStorage.setItem('banglanewshub_autoRefresh', isAutoRefreshEnabled);
+}
+
+// Start auto-refresh interval
+function startAutoRefresh() {
+    // Clear any existing interval
+    if (autoRefreshInterval) {
+        clearInterval(autoRefreshInterval);
+    }
+    
+    // Set new interval (300000ms = 5 minutes)
+    autoRefreshInterval = setInterval(() => {
+        if (!isFetching) {
+            loadLiveNews(true); // Silent refresh
+        }
+    }, 300000);
+}
+
+// Stop auto-refresh interval
+function stopAutoRefresh() {
+    if (autoRefreshInterval) {
+        clearInterval(autoRefreshInterval);
+        autoRefreshInterval = null;
+    }
+}
+
+// Update auto-refresh button appearance
+function updateAutoRefreshButton() {
+    const btn = document.getElementById('autoRefreshToggle');
+    if (!btn) return;
+    
+    const icon = btn.querySelector('i');
+    const text = btn.querySelector('.btn-text');
+    
+    if (isAutoRefreshEnabled) {
+        btn.classList.add('auto-refresh-active');
+        icon.className = 'fas fa-pause';
+        if (text) text.textContent = 'Pause Refresh';
+    } else {
+        btn.classList.remove('auto-refresh-active');
+        icon.className = 'fas fa-play';
+        if (text) text.textContent = 'Auto-Refresh';
+    }
+}
+
+// Render feed selector buttons
+function renderFeedSelector() {
+    const container = document.getElementById('feedSelector');
+    if (!container) return;
+    
+    const activeFeeds = rssFeeds.filter(feed => feed.active);
+    
+    container.innerHTML = activeFeeds.map(feed => `
+        <button class="feed-btn ${feed.id === currentFeed ? 'active' : ''}" 
+                data-feed-id="${feed.id}"
+                title="${feed.type.toUpperCase()} format">
+            <i class="fas fa-rss"></i>
+            ${feed.name}
+        </button>
+    `).join('');
+    
+    // Add event listeners to feed buttons
+    container.querySelectorAll('.feed-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const feedId = btn.dataset.feedId;
+            if (feedId !== currentFeed) {
+                currentFeed = feedId;
+                renderFeedSelector();
+                loadLiveNews();
+                
+                // Save selected feed
+                localStorage.setItem('banglanewshub_currentFeed', feedId);
+                
+                showToast(`Switched to ${rssFeeds.find(f => f.id === feedId).name}`, 'info');
+            }
+        });
+    });
+}
+
+// Load live news from current feed
+// Load live news from current feed
+async function loadLiveNews(silent = false) {
+    const feed = rssFeeds.find(f => f.id === currentFeed);
+    if (!feed || !feed.active) {
+        showLiveNewsError('Selected news feed is not available');
+        return;
+    }
+    
+    if (isFetching) return;
+    
+    isFetching = true;
+    if (!silent) {
+        showLiveNewsLoading();
+    }
+    
+    try {
+        let xmlText;
+        
+        // Try different methods to fetch the RSS feed
+        // Method 1: Direct fetch (may fail due to CORS)
+        try {
+            const response = await fetch(feed.url, {
+                method: 'GET',
+                mode: 'cors',
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                    'Accept': 'application/xml, text/xml, application/rss+xml',
+                    'Accept-Language': 'en-US,en;q=0.9',
+                    'Cache-Control': 'no-cache'
+                }
+            });
+            
+            if (response.ok) {
+                xmlText = await response.text();
+                console.log(`Successfully fetched ${feed.name} directly`);
+            } else {
+                throw new Error(`Direct fetch failed: ${response.status}`);
+            }
+        } catch (directError) {
+            console.log(`Direct fetch failed, trying proxy: ${directError.message}`);
+            
+            // Method 2: Use CORS proxy with fallback options
+            const proxyOptions = [
+                `https://api.allorigins.win/raw?url=${encodeURIComponent(feed.url)}`,
+                `https://corsproxy.io/?${encodeURIComponent(feed.url)}`,
+                `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(feed.url)}`
+            ];
+            
+            let proxySuccess = false;
+            for (let i = 0; i < proxyOptions.length && !proxySuccess; i++) {
+                try {
+                    const proxyResponse = await fetch(proxyOptions[i], {
+                        timeout: 10000
+                    });
+                    
+                    if (proxyResponse.ok) {
+                        xmlText = await proxyResponse.text();
+                        proxySuccess = true;
+                        console.log(`Success using proxy ${i + 1}`);
+                    }
+                } catch (proxyError) {
+                    console.log(`Proxy ${i + 1} failed`);
+                }
+            }
+            
+            if (!proxySuccess) {
+                throw new Error('All fetch methods failed');
+            }
+        }
+        
+        // Parse the XML
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
+        
+        // Check for XML parsing errors
+        const parserError = xmlDoc.querySelector('parsererror');
+        if (parserError) {
+            console.error('XML Parse Error:', parserError.textContent);
+            
+            // Try to extract data even if there are minor parsing errors
+            console.log('Attempting to extract data despite parsing warnings...');
+        }
+        
+        // Parse based on feed type
+        if (feed.type === 'atom') {
+            liveNews = parseAtomFeed(xmlDoc, feed);
+        } else {
+            liveNews = parseRSSFeed(xmlDoc, feed);
+        }
+        
+        // If no items were parsed, try alternative parsing
+        if (liveNews.length === 0) {
+            console.log('Standard parsing failed, trying alternative method...');
+            liveNews = tryAlternativeParsing(xmlText, feed);
+        }
+        
+        // If still no news, use demo data for testing
+        if (liveNews.length === 0) {
+            console.log('Using demo data for testing');
+            liveNews = getDemoNewsData(feed);
+        }
+        
+        // Render the news
+        renderLiveNews();
+        
+        // Update last fetch time
+        updateLastFetchTime();
+        
+        if (!silent) {
+            showToast(`Loaded ${liveNews.length} news items from ${feed.name}`, 'success');
+        }
+        
+    } catch (error) {
+        console.error('Error fetching RSS feed:', error);
+        
+        // Use demo data as fallback
+        const feed = rssFeeds.find(f => f.id === currentFeed);
+        liveNews = getDemoNewsData(feed);
+        renderLiveNews();
+        
+        showToast(`Using demo data. Could not fetch live feed: ${error.message}`, 'warning');
+        
+    } finally {
+        isFetching = false;
+    }
+}
+
+// Alternative parsing method
+function tryAlternativeParsing(xmlText, feedInfo) {
+    const items = [];
+    
+    try {
+        // Simple regex parsing as fallback
+        const itemRegex = /<item[^>]*>([\s\S]*?)<\/item>|<entry[^>]*>([\s\S]*?)<\/entry>/gi;
+        let match;
+        let count = 0;
+        
+        while ((match = itemRegex.exec(xmlText)) !== null && count < 10) {
+            const itemContent = match[1] || match[2];
+            
+            // Extract title
+            const titleMatch = itemContent.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+            const title = titleMatch ? cleanText(titleMatch[1]) : `News Item ${count + 1}`;
+            
+            // Extract link
+            const linkMatch = itemContent.match(/<link[^>]*>(.*?)<\/link>|<link[^>]*href=["']([^"']+)["']/i);
+            const link = linkMatch ? (linkMatch[1] || linkMatch[2] || '#') : '#';
+            
+            // Extract description
+            const descMatch = itemContent.match(/<description[^>]*>([\s\S]*?)<\/description>|<summary[^>]*>([\s\S]*?)<\/summary>/i);
+            const description = descMatch ? cleanText(descMatch[1] || descMatch[2]) : '';
+            
+            items.push({
+                id: `alt-${Date.now()}-${count}`,
+                title: title,
+                link: link,
+                description: description.substring(0, 150) + (description.length > 150 ? '...' : ''),
+                pubDate: new Date(Date.now() - count * 3600000), // Staggered times
+                category: 'General',
+                source: feedInfo.name,
+                sourceLogo: feedInfo.logo,
+                feedId: feedInfo.id,
+                feedType: feedInfo.type
+            });
+            
+            count++;
+        }
+    } catch (error) {
+        console.error('Alternative parsing also failed:', error);
+    }
+    
+    return items;
+}
+
+// Demo data for testing when feeds fail
+function getDemoNewsData(feedInfo) {
+    const demoNews = [];
+    const now = new Date();
+    const sourceName = feedInfo.name;
+    
+    const prothomAloDemos = [
+        {
+            title: 'দেশটা হলো মায়ের মতো',
+            description: 'মানুষ, নদী, আকাশ, প্রান্তর, পাহাড়, সমুদ্র ইত্যাদি সবকিছু নিয়েই দেশ। তাই দেশ হলো মায়ের মতো।',
+            category: 'পরীক্ষা'
+        },
+        {
+            title: 'শোনো বিজয়ের তোপধ্বনি',
+            description: 'সূর্য আমায় বলল ডেকে, নদীর ছবি আঁকতে জানো? দৃপ্তস্বরে বলি— যাদের প্রাণে রক্তজোয়ার তাদের বলো নদীর কথা!',
+            category: 'kobita'
+        },
+        {
+            title: 'সিঙ্গাপুরে প্রবাসীদের উদ্যোগে রক্তদান কর্মসূচি',
+            description: 'বিদেশে বসবাসরত বাংলাদেশিদের উদ্যোগে একটি রক্তদান কর্মসূচির আয়োজন করা হয়েছে।',
+            category: 'দূর পরবাস'
+        }
+    ];
+    
+    const bbcBanglaDemos = [
+        {
+            title: 'সাংবাদিক আনিস আলমগীরকে সন্ত্রাস বিরোধী আইনে গ্রেফতার দেখাল পুলিশ',
+            description: 'বাদিক আনিস আলমগীরকে সন্ত্রাসবিরোধী আইনে হওয়া মামলায় গ্রেফতার দেখিয়ে আদালতে তুলছে গোয়েন্দা পুলিশ।',
+            category: 'খবর'
+        },
+        {
+            title: 'বাংলাদেশে বন্যা পরিস্থিতির উন্নতি',
+            description: 'বাংলাদেশের উত্তরাঞ্চলে বন্যা পরিস্থিতির কিছুটা উন্নতি হয়েছে বলে জানিয়েছে দুর্যোগ ব্যবস্থাপনা কর্তৃপক্ষ।',
+            category: 'আপডেট'
+        },
+        {
+            title: 'করোনাভাইরাস: বাংলাদেশে নতুন বৈকল্পিক শনাক্ত',
+            description: 'বাংলাদেশে করোনাভাইরাসের একটি নতুন বৈকল্পিক শনাক্ত হয়েছে বলে নিশ্চিত করেছে আইইডিসিআর।',
+            category: 'স্বাস্থ্য'
+        }
+    ];
+    
+    const demos = feedInfo.id === 'prothom-alo' ? prothomAloDemos : bbcBanglaDemos;
+    
+    demos.forEach((demo, index) => {
+        demoNews.push({
+            id: `demo-${feedInfo.id}-${index}`,
+            title: demo.title,
+            link: `https://${feedInfo.id === 'prothom-alo' ? 'www.prothomalo.com' : 'www.bbc.com/bengali'}/article-${index}`,
+            description: demo.description,
+            pubDate: new Date(now.getTime() - index * 3600000), // 1 hour apart
+            category: demo.category,
+            source: sourceName,
+            sourceLogo: feedInfo.logo,
+            feedId: feedInfo.id,
+            feedType: feedInfo.type,
+            isDemo: true // Mark as demo data
+        });
+    });
+    
+    return demoNews;
+}
+// Parse Atom format (Prothom Alo)
+function parseAtomFeed(xmlDoc, feedInfo) {
+    const items = [];
+    const entries = xmlDoc.querySelectorAll('entry');
+    
+    entries.forEach((entry, index) => {
+        try {
+            const title = entry.querySelector('title')?.textContent?.trim() || 'No title';
+            const linkElem = entry.querySelector('link[rel="alternate"]') || entry.querySelector('link');
+            const link = linkElem?.getAttribute('href') || '#';
+            const description = entry.querySelector('summary')?.textContent?.trim() || 
+                              entry.querySelector('content')?.textContent?.trim() || '';
+            const pubDateStr = entry.querySelector('published')?.textContent || 
+                             entry.querySelector('updated')?.textContent || 
+                             new Date().toISOString();
+            const categoryElem = entry.querySelector('category');
+            const category = categoryElem?.getAttribute('term') || 
+                           categoryElem?.textContent?.trim() || 'General';
+            
+            // Parse date
+            let pubDate;
+            try {
+                pubDate = new Date(pubDateStr);
+                if (isNaN(pubDate.getTime())) {
+                    pubDate = new Date();
+                }
+            } catch {
+                pubDate = new Date();
+            }
+            
+            items.push({
+                id: entry.querySelector('id')?.textContent || `atom-${Date.now()}-${index}`,
+                title: title,
+                link: link,
+                description: description,
+                pubDate: pubDate,
+                category: category,
+                source: feedInfo.name,
+                sourceLogo: feedInfo.logo,
+                feedId: feedInfo.id,
+                feedType: 'atom'
+            });
+        } catch (error) {
+            console.warn('Failed to parse Atom entry:', error);
+        }
+    });
+    
+    // Sort by date (newest first) and limit to 10 items
+    return items.sort((a, b) => b.pubDate - a.pubDate).slice(0, 10);
+}
+
+// Parse RSS 2.0 format (BBC Bangla)
+function parseRSSFeed(xmlDoc, feedInfo) {
+    const items = [];
+    const itemElements = xmlDoc.querySelectorAll('item');
+    
+    itemElements.forEach((item, index) => {
+        try {
+            const title = item.querySelector('title')?.textContent?.trim() || 'No title';
+            const link = item.querySelector('link')?.textContent?.trim() || 
+                        item.querySelector('link')?.getAttribute('href') || '#';
+            const description = item.querySelector('description')?.textContent?.trim() || 
+                              item.querySelector('content\\:encoded')?.textContent?.trim() || '';
+            const pubDateStr = item.querySelector('pubDate')?.textContent || 
+                             item.querySelector('dc\\:date')?.textContent || 
+                             new Date().toISOString();
+            const category = item.querySelector('category')?.textContent?.trim() || 
+                           item.querySelector('dc\\:subject')?.textContent?.trim() || 'General';
+            
+            // Parse date
+            let pubDate;
+            try {
+                pubDate = new Date(pubDateStr);
+                if (isNaN(pubDate.getTime())) {
+                    pubDate = new Date();
+                }
+            } catch {
+                pubDate = new Date();
+            }
+            
+            items.push({
+                id: item.querySelector('guid')?.textContent || `rss-${Date.now()}-${index}`,
+                title: title,
+                link: link,
+                description: cleanText(description),
+                pubDate: pubDate,
+                category: category,
+                source: feedInfo.name,
+                sourceLogo: feedInfo.logo,
+                feedId: feedInfo.id,
+                feedType: 'rss'
+            });
+        } catch (error) {
+            console.warn('Failed to parse RSS item:', error);
+        }
+    });
+    
+    // Sort by date (newest first) and limit to 10 items
+    return items.sort((a, b) => b.pubDate - a.pubDate).slice(0, 10);
+}
+
+// Clean text by removing HTML tags
+function cleanText(text) {
+    return text.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
+}
+
+// Render live news to the page
+function renderLiveNews() {
+    const container = document.getElementById('liveNewsContainer');
+    const countElement = document.getElementById('liveNewsCount');
+    
+    if (!container || !countElement) return;
+    
+    if (liveNews.length === 0) {
+        container.innerHTML = `
+            <div class="empty-live-news">
+                <i class="fas fa-newspaper"></i>
+                <p>No news available at the moment</p>
+                <button class="btn btn-reset-filters" onclick="loadLiveNews()">
+                    Try Again
+                </button>
+            </div>
+        `;
+        countElement.textContent = '0';
+        return;
+    }
+    
+    countElement.textContent = liveNews.length;
+    
+    // Group news by time recency
+    const now = new Date();
+    const oneHourAgo = new Date(now.getTime() - 60 * 60 * 1000);
+    const sixHoursAgo = new Date(now.getTime() - 6 * 60 * 60 * 1000);
+    
+    const newsHtml = liveNews.map(item => {
+        // Determine time indicator
+        let timeIndicator = 'time-old';
+        if (item.pubDate > oneHourAgo) {
+            timeIndicator = 'time-very-recent';
+        } else if (item.pubDate > sixHoursAgo) {
+            timeIndicator = 'time-recent';
+        }
+        
+        // Format description
+        const description = item.description.length > 150 
+            ? item.description.substring(0, 150) + '...' 
+            : item.description;
+        
+        return `
+            <div class="live-news-card" data-news-id="${item.id}">
+                <div class="live-news-card-content">
+                    <div class="live-news-header">
+                        <div class="live-news-source">
+                            <div class="live-news-source-logo ${item.feedId === 'prothom-alo' ? 'prothom-alo-bg' : 'bbc-bangla-bg'}">
+                                ${item.sourceLogo}
+                            </div>
+                            <div class="live-news-source-info">
+                                <h4>${item.source}</h4>
+                                <p>
+                                    <span class="time-indicator ${timeIndicator}"></span>
+                                    ${formatTimeAgo(item.pubDate)}
+                                </p>
+                            </div>
+                        </div>
+                        <span class="live-news-time">
+                            ${item.pubDate.toLocaleTimeString([], { 
+                                hour: '2-digit', 
+                                minute: '2-digit' 
+                            })}
+                        </span>
+                    </div>
+                    
+                    <h3 class="live-news-title">${item.title}</h3>
+                    
+                    <div class="live-news-description">
+                        ${description}
+                    </div>
+                    
+                    <div class="live-news-footer">
+                        <span class="live-news-category">${item.category}</span>
+                        <span class="live-news-read-more">
+                            Read Full <i class="fas fa-external-link-alt"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+    
+    container.innerHTML = `
+        <div class="live-news-grid fade-in">
+            ${newsHtml}
+        </div>
+    `;
+    
+    // Add click event listeners to news cards
+    container.querySelectorAll('.live-news-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            const newsId = card.dataset.newsId;
+            const newsItem = liveNews.find(item => item.id === newsId);
+            
+            if (newsItem && newsItem.link && newsItem.link !== '#') {
+                // Open in new tab
+                window.open(newsItem.link, '_blank');
+                
+                // Add to recently visited in your existing system
+                addToRecentlyVisited(newsItem);
+                
+                // Show toast notification
+                showToast(`Opening ${newsItem.source} article`, 'info');
+            }
+        });
+    });
+}
+
+// Add to recently visited (integrates with your existing system)
+function addToRecentlyVisited(newsItem) {
+    // This function integrates with your existing recentlyVisited system
+    const visitedItem = {
+        id: newsItem.id,
+        name: `${newsItem.source}: ${newsItem.title.substring(0, 30)}...`,
+        url: newsItem.link,
+        logo: newsItem.sourceLogo,
+        timestamp: new Date().toISOString(),
+        type: 'news_article'
+    };
+    
+    // Add to beginning of recentlyVisited array
+    recentlyVisited.unshift(visitedItem);
+    
+    // Keep only last 10 items
+    if (recentlyVisited.length > 10) {
+        recentlyVisited.pop();
+    }
+    
+    // Update the UI
+    loadRecentlyVisited();
+    updateStats();
+    updateFooterStats();
+    
+    // Save to database
+    saveRecentlyVisited();
+}
+
+// Save recently visited to database
+async function saveRecentlyVisited() {
+    try {
+        const appData = await db.get('app_data').catch(() => ({ 
+            _id: 'app_data', 
+            type: 'app_data', 
+            favorites: [], 
+            recentlyVisited: [] 
+        }));
+        
+        appData.recentlyVisited = recentlyVisited;
+        await db.put(appData);
+    } catch (error) {
+        console.error('Error saving recently visited:', error);
+    }
+}
+
+// Update last fetch time display
+function updateLastFetchTime() {
+    const now = new Date();
+    const timeString = now.toLocaleTimeString([], { 
+        hour: '2-digit', 
+        minute: '2-digit',
+        second: '2-digit'
+    });
+    
+    // You can add a small indicator showing last fetch time
+    const feedSelector = document.getElementById('feedSelector');
+    if (feedSelector) {
+        const existingTime = document.getElementById('lastFetchTime');
+        if (existingTime) {
+            existingTime.textContent = `Last updated: ${timeString}`;
+        } else {
+            const timeElement = document.createElement('div');
+            timeElement.id = 'lastFetchTime';
+            timeElement.style.cssText = `
+                font-size: 0.75rem;
+                color: var(--text-tertiary);
+                margin-top: 0.5rem;
+                text-align: right;
+                width: 100%;
+            `;
+            timeElement.textContent = `Last updated: ${timeString}`;
+            feedSelector.appendChild(timeElement);
+        }
+    }
+}
+
+// Show loading state
+function showLiveNewsLoading() {
+    const container = document.getElementById('liveNewsContainer');
+    if (!container) return;
+    
+    container.innerHTML = `
+        <div class="loading-container">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">Loading live news...</p>
+        </div>
+    `;
+}
+
+// Show error state
+function showLiveNewsError(message) {
+    const container = document.getElementById('liveNewsContainer');
+    const countElement = document.getElementById('liveNewsCount');
+    
+    if (!container || !countElement) return;
+    
+    container.innerHTML = `
+        <div class="live-news-error">
+            <i class="fas fa-exclamation-triangle"></i>
+            <p>${message}</p>
+            <button class="btn btn-reset-filters" onclick="loadLiveNews()">
+                Try Again
+            </button>
+        </div>
+    `;
+    
+    countElement.textContent = 'Error';
+}
+
+// ===========================================
+// INTEGRATION WITH EXISTING APP
+// ===========================================
+
+// Modify your existing initializeApp function
+// Find this line in your existing code:
+// updateFooterStats();
+// Add this after it:
+
+// Initialize live news functionality
+initializeLiveNews();
+
+// Also update your existing showToast function to ensure it exists
+if (typeof showToast !== 'function') {
+    function showToast(message, type = 'success') {
+        // Fallback if your toast function doesn't exist
+        console.log(`${type.toUpperCase()}: ${message}`);
+    }
+}
+
+// Ensure formatTimeAgo function exists (you already have this)
+if (typeof formatTimeAgo !== 'function') {
+    function formatTimeAgo(timestamp) {
+        const now = new Date();
+        const past = new Date(timestamp);
+        const diffMs = now - past;
+        const diffMins = Math.floor(diffMs / 60000);
+        const diffHours = Math.floor(diffMs / 3600000);
+        const diffDays = Math.floor(diffMs / 86400000);
+        
+        if (diffMins < 1) return 'Just now';
+        if (diffMins < 60) return `${diffMins} min${diffMins > 1 ? 's' : ''} ago`;
+        if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+        if (diffDays < 7) return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+        return past.toLocaleDateString();
+    }
+}
+// ===========================================
+// IN-APP NEWS VIEWER FUNCTIONALITY
+// ===========================================
+
+// News viewer state
+let newsViewerHistory = [];
+let newsViewerCurrentIndex = -1;
+let currentArticle = null;
+
+// Initialize news viewer
+function initializeNewsViewer() {
+    setupNewsViewerEventListeners();
+    
+    // Modify existing news card click handlers
+    modifyExistingClickHandlers();
+}
+
+// Setup event listeners for news viewer
+function setupNewsViewerEventListeners() {
+    // Close button
+    document.getElementById('closeNewsViewerBtn')?.addEventListener('click', closeNewsViewer);
+    
+    // External browser button
+    document.getElementById('newsViewerExternal')?.addEventListener('click', openInExternalBrowser);
+    
+    // Navigation buttons
+    document.getElementById('newsViewerBack')?.addEventListener('click', navigateNewsViewerBack);
+    document.getElementById('newsViewerForward')?.addEventListener('click', navigateNewsViewerForward);
+    document.getElementById('newsViewerRefresh')?.addEventListener('click', refreshNewsViewer);
+    
+    // Footer buttons
+    document.getElementById('newsViewerAddFavorite')?.addEventListener('click', addArticleToFavorites);
+    document.getElementById('newsViewerShare')?.addEventListener('click', shareArticle);
+    
+    // Error handling buttons
+    document.getElementById('newsViewerRetry')?.addEventListener('click', retryLoadingArticle);
+    document.getElementById('newsViewerOpenExternal')?.addEventListener('click', openInExternalBrowser);
+    
+    // Close on background click
+    document.getElementById('newsViewerModal')?.addEventListener('click', (e) => {
+        if (e.target.id === 'newsViewerModal') {
+            closeNewsViewer();
+        }
+    });
+}
+
+// Modify existing click handlers to use in-app viewer
+function modifyExistingClickHandlers() {
+    // Override existing news card click handlers
+    document.addEventListener('click', (e) => {
+        // Check if click is on a news card from live news
+        const liveNewsCard = e.target.closest('.live-news-card');
+        if (liveNewsCard && !e.target.closest('.live-news-read-more')) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const newsId = liveNewsCard.dataset.newsId;
+            const newsItem = liveNews.find(item => item.id === newsId);
+            
+            if (newsItem) {
+                openArticleInViewer(newsItem);
+            }
+        }
+        
+        // Check if click is on a regular news site card (from your main grid/list)
+        const newsCard = e.target.closest('.news-card, .list-item');
+        if (newsCard && !e.target.closest('.favorite-btn')) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const siteId = newsCard.dataset.siteId;
+            const site = allNewsSites.find(s => s._id === siteId);
+            
+            if (site) {
+                openWebsiteInViewer(site);
+            }
+        }
+        
+        // Check if click is on "Read Full" button
+        const readMoreBtn = e.target.closest('.live-news-read-more, .list-visit, .card-visit');
+        if (readMoreBtn) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Find the parent news card
+            const card = readMoreBtn.closest('.live-news-card, .news-card, .list-item');
+            if (card) {
+                const newsId = card.dataset.newsId;
+                const siteId = card.dataset.siteId;
+                
+                if (newsId) {
+                    // It's a live news article
+                    const newsItem = liveNews.find(item => item.id === newsId);
+                    if (newsItem) {
+                        openArticleInViewer(newsItem);
+                    }
+                } else if (siteId) {
+                    // It's a news website
+                    const site = allNewsSites.find(s => s._id === siteId);
+                    if (site) {
+                        openWebsiteInViewer(site);
+                    }
+                }
+            }
+        }
+    }, true); // Use capture phase to intercept clicks early
+}
+
+// Open article in news viewer
+function openArticleInViewer(newsItem) {
+    currentArticle = newsItem;
+    
+    // Add to history
+    addToNewsViewerHistory(newsItem.link, newsItem.title, newsItem.source);
+    
+    // Update UI
+    updateNewsViewerUI(newsItem);
+    
+    // Load in iframe
+    loadUrlInViewer(newsItem.link);
+    
+    // Show modal
+    document.getElementById('newsViewerModal').style.display = 'flex';
+    
+    // Add to recently visited (your existing function)
+    addToRecentlyVisited(newsItem);
+}
+
+// Open website in news viewer
+function openWebsiteInViewer(site) {
+    currentArticle = {
+        link: site.url,
+        title: site.name,
+        source: site.name,
+        description: site.description || ''
+    };
+    
+    // Add to history
+    addToNewsViewerHistory(site.url, site.name, site.name);
+    
+    // Update UI
+    updateNewsViewerUI(currentArticle);
+    
+    // Load in iframe
+    loadUrlInViewer(site.url);
+    
+    // Show modal
+    document.getElementById('newsViewerModal').style.display = 'flex';
+    
+    // Add to recently visited (your existing function)
+    const newsItem = {
+        id: site._id,
+        name: site.name,
+        url: site.url,
+        logo: site.logo,
+        timestamp: new Date().toISOString()
+    };
+    addToRecentlyVisited(newsItem);
+}
+
+// Add URL to news viewer history
+function addToNewsViewerHistory(url, title, source) {
+    // Remove if already exists
+    const existingIndex = newsViewerHistory.findIndex(item => item.url === url);
+    if (existingIndex !== -1) {
+        newsViewerHistory.splice(existingIndex, 1);
+    }
+    
+    // Add to history
+    newsViewerHistory.push({
+        url: url,
+        title: title,
+        source: source,
+        timestamp: new Date().toISOString()
+    });
+    
+    // Keep only last 20 items
+    if (newsViewerHistory.length > 20) {
+        newsViewerHistory.shift();
+    }
+    
+    // Update current index
+    newsViewerCurrentIndex = newsViewerHistory.length - 1;
+    
+    // Update navigation buttons
+    updateNewsViewerNavigation();
+}
+
+// Load URL in iframe
+function loadUrlInViewer(url) {
+    const frame = document.getElementById('newsViewerFrame');
+    const loading = document.getElementById('newsViewerLoading');
+    const error = document.getElementById('newsViewerError');
+    
+    // Show loading, hide error and frame
+    loading.style.display = 'flex';
+    error.style.display = 'none';
+    frame.style.display = 'none';
+    
+    // Set iframe source
+    frame.src = url;
+    
+    // Add event listeners to iframe
+    frame.onload = function() {
+        loading.style.display = 'none';
+        frame.style.display = 'block';
+        
+        // Update security indicator
+        updateSecurityIndicator(url);
+    };
+    
+    frame.onerror = function() {
+        loading.style.display = 'none';
+        error.style.display = 'flex';
+        
+        document.getElementById('newsViewerErrorMessage').textContent = 
+            `Could not load: ${url}. The website may have restrictions.`;
+    };
+}
+
+// Update news viewer UI
+function updateNewsViewerUI(newsItem) {
+    // Update title
+    document.getElementById('newsViewerTitle').textContent = newsItem.title || 'News Article';
+    
+    // Update URL display
+    const urlElement = document.getElementById('newsViewerUrl');
+    const url = new URL(newsItem.link);
+    urlElement.textContent = `${url.hostname}${url.pathname}`;
+    urlElement.title = newsItem.link;
+    
+    // Update source
+    document.getElementById('newsViewerSource').textContent = `Source: ${newsItem.source}`;
+}
+
+// Update security indicator
+function updateSecurityIndicator(url) {
+    const securityElement = document.getElementById('newsViewerSecurity');
+    const isSecure = url.startsWith('https://');
+    
+    if (isSecure) {
+        securityElement.innerHTML = '<i class="fas fa-lock"></i> Secure Connection';
+        securityElement.style.color = 'var(--green-500)';
+    } else {
+        securityElement.innerHTML = '<i class="fas fa-unlock"></i> Not Secure';
+        securityElement.style.color = 'var(--red-500)';
+    }
+}
+
+// Update navigation buttons
+function updateNewsViewerNavigation() {
+    const backBtn = document.getElementById('newsViewerBack');
+    const forwardBtn = document.getElementById('newsViewerForward');
+    
+    backBtn.disabled = newsViewerCurrentIndex <= 0;
+    forwardBtn.disabled = newsViewerCurrentIndex >= newsViewerHistory.length - 1;
+}
+
+// Navigate back in history
+function navigateNewsViewerBack() {
+    if (newsViewerCurrentIndex > 0) {
+        newsViewerCurrentIndex--;
+        const historyItem = newsViewerHistory[newsViewerCurrentIndex];
+        
+        // Update current article
+        currentArticle = {
+            link: historyItem.url,
+            title: historyItem.title,
+            source: historyItem.source
+        };
+        
+        // Update UI
+        updateNewsViewerUI(currentArticle);
+        
+        // Load URL
+        loadUrlInViewer(historyItem.url);
+    }
+}
+
+// Navigate forward in history
+function navigateNewsViewerForward() {
+    if (newsViewerCurrentIndex < newsViewerHistory.length - 1) {
+        newsViewerCurrentIndex++;
+        const historyItem = newsViewerHistory[newsViewerCurrentIndex];
+        
+        // Update current article
+        currentArticle = {
+            link: historyItem.url,
+            title: historyItem.title,
+            source: historyItem.source
+        };
+        
+        // Update UI
+        updateNewsViewerUI(currentArticle);
+        
+        // Load URL
+        loadUrlInViewer(historyItem.url);
+    }
+}
+
+// Refresh current page
+function refreshNewsViewer() {
+    if (currentArticle) {
+        loadUrlInViewer(currentArticle.link);
+    }
+}
+
+// Retry loading article
+function retryLoadingArticle() {
+    if (currentArticle) {
+        loadUrlInViewer(currentArticle.link);
+    }
+}
+
+// Open in external browser
+function openInExternalBrowser() {
+    if (currentArticle) {
+        window.open(currentArticle.link, '_blank');
+        closeNewsViewer();
+    }
+}
+
+// Add article to favorites
+function addArticleToFavorites() {
+    if (currentArticle) {
+        // You can implement saving specific articles to favorites
+        showToast(`Saved "${currentArticle.title.substring(0, 30)}..."`, 'success');
+    }
+}
+
+// Share article
+function shareArticle() {
+    if (currentArticle) {
+        if (navigator.share) {
+            navigator.share({
+                title: currentArticle.title,
+                text: currentArticle.description || 'Check out this article',
+                url: currentArticle.link
+            });
+        } else {
+            // Fallback: copy to clipboard
+            navigator.clipboard.writeText(currentArticle.link).then(() => {
+                showToast('Link copied to clipboard!', 'success');
+            });
+        }
+    }
+}
+
+// Close news viewer
+function closeNewsViewer() {
+    document.getElementById('newsViewerModal').style.display = 'none';
+    
+    // Reset iframe to prevent continued loading
+    const frame = document.getElementById('newsViewerFrame');
+    frame.src = 'about:blank';
+    
+    // Reset states
+    document.getElementById('newsViewerLoading').style.display = 'flex';
+    document.getElementById('newsViewerError').style.display = 'none';
+    frame.style.display = 'none';
+}
+
+// ===========================================
+// INTEGRATION WITH EXISTING APP
+// ===========================================
+
+// Add this to the end of your existing initializeApp function:
+// Find where you call initializeLiveNews() and add this after it:
+
+// Initialize news viewer
+initializeNewsViewer();
+
+// Also, update your existing addToRecentlyVisited function to ensure it exists:
+if (typeof addToRecentlyVisited !== 'function') {
+    function addToRecentlyVisited(newsItem) {
+        console.log('Article visited:', newsItem.title);
+        // Add your existing recently visited logic here
+    }
+}
+</script>
+</body>
+</html>
