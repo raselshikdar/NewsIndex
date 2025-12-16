@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy – NewsIndex</title>
+
+    <!-- Fonts & Icons (same as index.html) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📰</text></svg>">
+
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= HEADER (same as index.html) ================= -->
+<header class="header">
+    <div class="container">
+        <div class="header-top">
+            <div class="logo-section">
+                <div class="logo-icon">
+                    <i class="fas fa-newspaper"></i>
+                </div>
+                <div>
+                    <h1 class="site-title">NewsIndex</h1>
+                    <p class="site-subtitle">
+                        <i class="fas fa-map-marker-alt location-icon"></i>
+                        সকল সংবাদ একস্থানে
+                    </p>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <div class="theme-toggle-container">
+                    <button id="themeToggle" class="theme-btn">
+                        <i class="fas fa-sun light-icon"></i>
+                        <span class="btn-text">Light</span>
+                    </button>
+                    <button id="themeToggleDark" class="theme-btn">
+                        <i class="fas fa-moon dark-icon"></i>
+                        <span class="btn-text">Dark</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- =============================================================== -->
+
+
+<!-- ================= MAIN CONTENT ================= -->
+<main class="main-content">
+    <div class="container">
+
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-user-shield section-icon"></i>
+                    Privacy Policy
+                </h2>
+            </div>
+
+            <div class="about-description">
+                <p>
+                    At <strong>NewsIndex</strong>, your privacy is important to us.
+                    This Privacy Policy explains how information is handled when you use our website.
+                </p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3 class="section-title">1. Nature of This Website</h3>
+            <p class="about-description">
+                NewsIndex is a <strong>news aggregation platform</strong>.  
+                We do not publish original news articles.  
+                We only display publicly available headlines and links and redirect users to the original publishers.
+            </p>
+        </div>
+
+        <div class="section">
+            <h3 class="section-title">2. Information We Collect</h3>
+            <p class="about-description">
+                NewsIndex does <strong>not</strong> collect personal information such as your name, email address,
+                phone number, or identity.
+            </p>
+            <p class="about-description">
+                Any preferences (such as theme mode, favorites, or recently visited sites) are stored
+                <strong>locally in your browser</strong> using local storage.
+                This data never leaves your device.
+            </p>
+        </div>
+
+        <div class="section">
+            <h3 class="section-title">3. Cookies & Local Storage</h3>
+            <p class="about-description">
+                NewsIndex does not use tracking cookies.
+                Local storage may be used only to improve user experience
+                (for example: saving theme preference or favorite sites).
+            </p>
+        </div>
+
+        <div class="section">
+            <h3 class="section-title">4. Third-Party Websites</h3>
+            <p class="about-description">
+                When you click a news link, you are redirected to an external website
+                (such as Prothom Alo, BBC, or other publishers).
+            </p>
+            <p class="about-description">
+                NewsIndex is <strong>not responsible</strong> for the privacy practices,
+                content, or policies of those third-party websites.
+            </p>
+        </div>
+
+        <div class="section">
+            <h3 class="section-title">5. Data Security</h3>
+            <p class="about-description">
+                Since we do not collect or store personal data on our servers,
+                the risk of data misuse is minimal.
+                However, no method of transmission over the internet is 100% secure.
+            </p>
+        </div>
+
+        <div class="section">
+            <h3 class="section-title">6. Children’s Information</h3>
+            <p class="about-description">
+                NewsIndex does not knowingly collect any personal information from children under the age of 13.
+            </p>
+        </div>
+
+        <div class="section">
+            <h3 class="section-title">7. Policy Updates</h3>
+            <p class="about-description">
+                This Privacy Policy may be updated from time to time.
+                Any changes will be reflected on this page with an updated date.
+            </p>
+        </div>
+
+        <div class="section">
+            <h3 class="section-title">8. Contact</h3>
+            <p class="about-description">
+                If you have questions, concerns, or believe your rights have been affected,
+                please contact the site maintainer through the provided contact channels.
+            </p>
+        </div>
+
+    </div>
+</main>
+<!-- ================= END MAIN ================= -->
+
+
+<!-- ================= FOOTER (same as index.html) ================= -->
+<footer class="footer">
+    <div class="container">
+
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                <p>© <span id="year"></span> NewsIndex</p>
+                <p>All news content belongs to respective publishers.</p>
+            </div>
+
+            <div class="footer-links-bottom">
+                <a href="index.html" class="footer-bottom-link">Home</a>
+                <a href="privacy.html" class="footer-bottom-link">Privacy Policy</a>
+            </div>
+        </div>
+
+    </div>
+</footer>
+<!-- =============================================================== -->
+
+<script>
+    // Auto year
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
